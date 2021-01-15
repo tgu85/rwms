@@ -7,16 +7,16 @@ import CardList from './CardList';
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
 import {members} from './Members.js';
-import insertRecipes from "./insertRecipes";
+import InsertRecipes from "./insertRecipes";
 
 
-ReactDOM.render(<Titel />, document.getElementById('root')
+ReactDOM.render(<Titel/>, document.getElementById('root')
 );
 ReactDOM.render(
-    <App />
+    <App/>
     , document.getElementById('root'));
 ReactDOM.render(
-    <insertRecipes />
+    <InsertRecipes/>
     , document.getElementById('root'));
 
 
