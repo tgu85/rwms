@@ -18,7 +18,7 @@ class App extends Component {
   }
   render () {
     const filteredMembers = this.state.members.filter(member => {
-      return members.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+      return member.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
     })
     return (
         <div className='tc'>
