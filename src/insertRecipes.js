@@ -1,25 +1,30 @@
 import React from 'react';
 
-class insert extends React.Component {
+class Insert extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            ingredients: [],
-            name: "",
-            quantity: 0
+        this.state = {[
+                {
+                    name: "",
+                    quantity: 0
+                    inputName: "",
+                    inputQuan: "",
+                }
+                ]
         };
     }
 
     handleChange = (event) => {
         this.setState({
-            input: event.target.value
+            inputName: event.target.value,
+            inputQuan: event.target.value
         })
     };
 
     addIngredient = () => {
         this.setState(state => ({
-            ingredients: [...state.ingredients, state.input],
-            quantity: [...state.quantity, state.input]
+            name: [...state.name, state.inputName],
+            quantity: [...state.quantity, state.inputQuan]
         }))
     };
 
@@ -28,21 +33,26 @@ class insert extends React.Component {
             <div>
                 <h1>Ingredients</h1>
                 <ul>
-                    {this.state.ingredients.map((ingredient, i) =>
+                    {this.state.name.map((ingredient, i) =>
                         <li key={i}>
                             {ingredient}
                         </li>)
                     }
                 </ul>
-                <input onChange={this.handleChange} value={this.state.input}/>
-                <input onChange={this.handleChange} value={this.state.input}/>
-                <input onChange={this.handleChange} value={this.state.input}/>
-                <input onChange={this.handleChange} value={this.state.input}/>
-                <input onChange={this.handleChange} value={this.state.input}/>
+                <input onChange={this.handleChange} value={this.state.inputName}/>
+                <input onChange={this.handleChange} value={this.state.inputName}/>
+                <input onChange={this.handleChange} value={this.state.inputName}/>
+                <input onChange={this.handleChange} value={this.state.inputName}/>
+                <input onChange={this.handleChange} value={this.state.inputName}/>
+                <input onChange={this.handleChange} value={this.state.inputQuan}/>
+                <input onChange={this.handleChange} value={this.state.inputQuan}/>
+                <input onChange={this.handleChange} value={this.state.inputQuan}/>
+                <input onChange={this.handleChange} value={this.state.inputQuan}/>
+                <input onChange={this.handleChange} value={this.state.inputQuan}/>
                 <button onClick={this.addIngredient}>Add ingredient</button>
             </div>
         )
     }
 }
 
-export default insert;
+export default Insert;

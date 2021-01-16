@@ -7,7 +7,7 @@ import CardList from './CardList';
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
 import {members} from './Members.js';
-import InsertRecipes from "./insertRecipes";
+import Insert from "./insertRecipes";
 
 
 ReactDOM.render(<Titel/>, document.getElementById('root')
@@ -16,7 +16,7 @@ ReactDOM.render(
     <App/>
     , document.getElementById('root'));
 ReactDOM.render(
-    <InsertRecipes/>
+    <Insert />
     , document.getElementById('root'));
 
 
