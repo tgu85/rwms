@@ -3,15 +3,14 @@ import React from 'react';
 class Insert extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {[
+        this.state = [
                 {
-                    name: "",
-                    quantity: 0
+                    name: "Tomate",
+                    quantity: 0,
                     inputName: "",
                     inputQuan: "",
-                }
-                ]
-        };
+                },
+                ];
     }
 
     handleChange = (event) => {
@@ -33,9 +32,9 @@ class Insert extends React.Component {
             <div>
                 <h1>Ingredients</h1>
                 <ul>
-                    {this.state.name.map((ingredient, i) =>
+                    {this.state.map((ingredient, i) =>
                         <li key={i}>
-                            {ingredient}
+                            {ingredient.name}
                         </li>)
                     }
                 </ul>
