@@ -40,29 +40,30 @@ class Insert extends React.Component {
                     }
                 </ul>
                 <div id="1">
-                    <input value={this.state.inputName}/>
-                    <input value={this.state.inputQuan}/>
+                    <input id="einf" value={this.state.inputName}/>
+                    <input id="einf" value={this.state.inputQuan}/>
                 </div>
                 <div id="2">
-                    <input value={this.state.inputName}/>
-                    <input value={this.state.inputQuan}/>
+                    <input id="einf" value={this.state.inputName}/>
+                    <input id="einf" value={this.state.inputQuan}/>
                 </div>
                 <div id="3">
-                    <input value={this.state.inputName}/>
-                    <input value={this.state.inputQuan}/>
+                    <input id="einf" value={this.state.inputName}/>
+                    <input id="einf" value={this.state.inputQuan}/>
                 </div>
                 <div id="4">
-                    <input value={this.state.inputName}/>
-                    <input value={this.state.inputQuan}/>
+                    <input id="einf" value={this.state.inputName}/>
+                    <input id="einf" value={this.state.inputQuan}/>
                 </div>
                 <div id="5">
-                    <input value={this.state.inputName}/>
-                    <input value={this.state.inputQuan}/>
+                    <input id="einf" value={this.state.inputName}/>
+                    <input id="einf" value={this.state.inputQuan}/>
                 </div>
-                <button onClick={this.addIngredients}>Add ingredient</button>
+                <button onClick={this.addIngredients} >Add ingredient</button>
+                <button onClick = {document.getElementById("einf").value = ''} >Clear Input Fields</button>
             </div>
         )
-    }
-}
+    };
+};
 
 export default Insert;
