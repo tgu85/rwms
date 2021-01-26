@@ -8,15 +8,19 @@ import reportWebVitals from './reportWebVitals';
 import 'tachyons';
 import {members} from './Members.js';
 import Insert from "./insertRecipes";
+import Planer from "./planer";
 
 
 ReactDOM.render(<Titel/>, document.getElementById('root')
 );
 ReactDOM.render(
-    <App/>
+    <App />
     , document.getElementById('root'));
 ReactDOM.render(
     <Insert />
+    , document.getElementById('root'));
+ReactDOM.render(
+    <Planer />
     , document.getElementById('root'));
 
 

@@ -60,7 +60,7 @@ class Insert extends React.Component {
                     <input id="einf" value={this.state.inputQuan}/>
                 </div>
                 <button onClick={this.addIngredients} >Add ingredient</button>
-                <button onClick = {document.getElementById("einf").value = ''} >Clear Input Fields</button>
+                <button onClick={document.getElementById("einf").value = ""} >Clear Input Fields</button>
             </div>
         )
     };
