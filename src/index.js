@@ -9,6 +9,10 @@ import 'tachyons';
 import {members} from './Members.js';
 import Insert from "./insertRecipes";
 import Planer from "./planer";
+import RecipeForm from "./recipeForm";
+import 'semantic-ui-css/semantic.min.css'
+import Test from "./showRecipes";
+import Recipes from "./Recipes";
 
 
 ReactDOM.render(<Titel/>, document.getElementById('root')
@@ -17,11 +21,20 @@ ReactDOM.render(
     <App />
     , document.getElementById('root'));
 ReactDOM.render(
-    <Insert />
+    <RecipeForm />
     , document.getElementById('root'));
 ReactDOM.render(
-    <Planer />
+    <Test />
     , document.getElementById('root'));
+ReactDOM.render(
+    <Recipes />
+    , document.getElementById('root'));
+//ReactDOM.render(
+    //<Insert />
+    //, document.getElementById('root'));
+//ReactDOM.render(
+    //<Planer />
+    //, document.getElementById('root'));
 
 
 ///If you want to start measuring performance in your app, pass a function
