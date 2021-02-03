@@ -1,16 +1,15 @@
-import React from 'react';
-import React, { useEffect, useState } from 'react';
-import { Recipes } from "./Recipes";
-import { recipeForm} from "./recipeForm";
+import React, { useEffect, useState, Container } from 'react';
+import { Recipes } from "./components/Recipes";
+import { RecipeForm} from "./recipeForm";
 import 'semantic-ui-css/semantic.min.css';
 
-function Test () {
-    const [recipes, setRecipes] = useState([]);
+export const ShowRecipes = function Test () {
+    const [recipe, setRecipe] = useState([]);
 
     useEffect(() => {
         fetch('/recipes').then(response =>
             response.json().then(data => {
-                setRecipes(data.recipes);
+                setRecipe(data.recipe);
             }))
     }, []);
 
@@ -18,11 +17,10 @@ function Test () {
         <div >
             <Container>
             <RecipeForm onNewRecipe ={recipe =>
-                setRecipes(currentRecipes => [recipe, ...currentRecipes])} />
-            <Recipes recipes={recipes} />
+                setRecipe(currentRecipes => [recipe, ...currentRecipes])} />
+            <Recipes recipe={recipe} />
             </Container>
         </div>
     )
 };
 
-export default Test;

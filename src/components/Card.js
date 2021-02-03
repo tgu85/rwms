@@ -3,7 +3,7 @@ import React from 'react';
 const Card = ({name, email, id }) => {
     return (
         <div className='tc avenir bg-light-red dib br3 pa3 ma2 grow bw2 shadow-5'>
-            <img alt='photo' src='profilepic.jpg' />
+            <img alt='photo' src='../profilepic.jpg' />
             <div>
                 <h2>{name}</h2>
                 <p>{email}</p>

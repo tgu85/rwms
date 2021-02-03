@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Button, Form, Input, Rating} from 'semantic-ui-react';
 
 export const RecipeForm = ({onNewRecipe}) => {
@@ -23,7 +23,7 @@ export const RecipeForm = ({onNewRecipe}) => {
                 //adding new recipes to the database
 
                 <Button onClick={ async () => {
-                    const recipe = {name, quantity, duration};
+                    const recipe = {name, duration};
                     const response = await fetch('(addRecipe', {
                         method: 'POST',
                         headers: {

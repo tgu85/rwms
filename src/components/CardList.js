@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from "./Card";
-import {members} from "./Members";
+import {members} from "../Members";
 
 const CardList = ({ members }) => {
     return (

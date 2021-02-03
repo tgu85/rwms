@@ -1,9 +1,11 @@
+import { members } from '../Members.js';
 import React, { Component } from 'react';
-import CardList from "./CardList";
-import Searchbox from './Searchbox';
-import {members} from './Members';
+import Searchbox from "../components/Searchbox";
+import CardList from "../components/CardList";
 
-class App extends Component {
+
+//this App displays the members (robots) and the searchbox from the example of udemy
+class MembersList extends Component {
   constructor() {
     super()
     this.state = {
@@ -30,4 +32,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default MembersList;

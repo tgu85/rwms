@@ -1,37 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Titel from './Titel.js';
-import CardList from './CardList';
+//import App from './containers/App';
+//import Titel from './components/Titel.js';
+import CardList from './components/CardList';
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
 import {members} from './Members.js';
 import Insert from "./insertRecipes";
 import Planer from "./planer";
-import RecipeForm from "./recipeForm";
+//import RecipeForm from "./recipeForm";
 import 'semantic-ui-css/semantic.min.css'
-import Test from "./showRecipes";
-import Recipes from "./Recipes";
+//import Test from "./showRecipes";
+//import Recipes from "./components/Recipes";
+import Appli from "./testApp";
 
 
-ReactDOM.render(<Titel/>, document.getElementById('root')
-);
-ReactDOM.render(
-    <App />
-    , document.getElementById('root'));
-ReactDOM.render(
-    <RecipeForm />
-    , document.getElementById('root'));
-ReactDOM.render(
-    <Test />
-    , document.getElementById('root'));
-ReactDOM.render(
-    <Recipes />
-    , document.getElementById('root'));
+//ReactDOM.render(<Titel />, document.getElementById('root')
+//);
 //ReactDOM.render(
-    //<Insert />
+    //<App />
+   // , document.getElementById('root'));
+//ReactDOM.render(
+    //<RecipeForm />
     //, document.getElementById('root'));
+//ReactDOM.render(
+    //<Test />
+   // , document.getElementById('root'));
+//ReactDOM.render(
+    //<Recipes />
+    //, document.getElementById('root'));
+ReactDOM.render(
+    <Appli />
+    , document.getElementById('root'));
 //ReactDOM.render(
     //<Planer />
     //, document.getElementById('root'));
