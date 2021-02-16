@@ -4,11 +4,13 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 //import 'tachyons';
 //import 'semantic-ui-css/semantic.min.css'
-import Appli from "./testApp";
+import App from './App.js';
+
 
 ReactDOM.render(
-    <Appli />
-    , document.getElementById('root'));
+    <App />,
+    document.getElementById('root')
+);
 
 
 ///If you want to start measuring performance in your app, pass a function

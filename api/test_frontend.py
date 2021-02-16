@@ -1,5 +1,5 @@
 import random
-from flask import Flask, Response
+from flask import Flask, Response, jsonify, make_response
 import json
 
 
@@ -25,6 +25,10 @@ def random_recipes():
         response.append({"weekday": weekday, "recipe": username_recipes[random_list[i]]})
     return Response(json.dumps(response), mimetype="application/json")
 
+@app.route("/createRecipe", methods=['POST'])
+def add_recipe():
+    resp = {'message': 'Created'}
+    return make_response(jsonify(resp), 201)
 
 if __name__ == "__main__":
     app.run()

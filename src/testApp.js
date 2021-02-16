@@ -20,6 +20,10 @@ class Appli extends Component {
             .then(recipes => this.setState({recipes: recipes}));
     }
 
+    addNewRecipe() {
+
+    }
+
     render() {
         return (
             <div>
