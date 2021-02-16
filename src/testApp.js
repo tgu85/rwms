@@ -7,9 +7,14 @@ class Appli extends Component {
         this.state = {
             recipes: [],
         }
+        this.createPlan = this.createPlan.bind(this);
     }
 
     componentDidMount() {
+        this.createPlan();
+    }
+
+    createPlan() {
         fetch("/recipesdata")
             .then(response => response.json())
             .then(recipes => this.setState({recipes: recipes}));
@@ -23,6 +28,9 @@ class Appli extends Component {
                     {
                         this.state.recipes.map((entry, index) => <p>{entry["weekday"]}: {entry["recipe"]}</p>)
                     }
+                </div>
+                <div>
+                    <button onClick={this.createPlan}> Create Random Meal Plan</button>
                 </div>
             </div>
         );

@@ -13,7 +13,7 @@ def random_recipes():
     username_recipes = ['Pizza', 'Nudelauflauf', 'Linsenbolognese', 'Bohnen mit veganem Speck', 'Reissalat',
                         'Knoblauchcurry', 'Burger', 'Stampfkartoffeln', 'Kuerbissuppe', 'Tofu-Reispfanne', 'Spargel',
                         'Feuriger Guacomole Wrap mit SueÃŸkartoffeln', 'Pfannkuchen', 'Gnocci-Rosenkohl-Pfanne',
-                        'Kichererbsensalat mit Couscous']
+                        'Kichererbsensalat mit Couscous', 'Spaghetti', 'Tortellini-Auflauf']
     weekdays = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
     while len(random_list) != 7:
         n = random.randint(0, len(username_recipes) - 1)
