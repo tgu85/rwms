@@ -6,7 +6,8 @@ import {
     Link
 } from "react-router-dom";
 import Appli from "./testApp";
-import {RecipeForm} from "./recipeForm";
+import RecipeForm from "./recipeForm";
+
 
 export default function BasicExample() {
     return (

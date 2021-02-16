@@ -1,44 +1,87 @@
-import React, { useState } from 'react';
+import React, {useState, Component} from 'react';
 import {Button, Form, Input, Rating} from 'semantic-ui-react';
 
-export const RecipeForm = ({onNewRecipe}) => {
-    const [name, setName] = useState('');
-    const [rating, setRating] = useState(1);
+class RecipeForm extends Component {
+    constructor() {
+        super();
+        this.state = {
+            name: '',
+            rating: 1,
+            ingredients: [
+                {'name': '', 'number': 0, 'unit': ''},
+                {'name': '', 'number': 0, 'unit': ''},
+                {'name': '', 'number': 0, 'unit': ''},
+                {'name': '', 'number': 0, 'unit': ''},
+                {'name': '', 'number': 0, 'unit': ''}
+            ],
+        }
+        this.addRecipe = this.addRecipe.bind(this);
+    }
 
-    return (
-        <Form>
-            <Form.Field>
-                <Input placeholder="Recipe Name"
-                       value={name}
-                       onChange={event => setName(event.target.value)} />
-            </Form.Field>
-            <Form.Field>
-                <Rating icon='heart'
-                       maxRating={3}
-                        defaultRating={1}
-                       onRate={(_, data) => {
-                           setRating(data.rating);
-                       }} />
-            </Form.Field>
-            <Form.Field>
+    createIngredientFormField() {
+        let ingredientFields = [];
+        for (let i = 0; i < 5; i++) {
+            ingredientFields.push(
+                <Form.Field>
+                    <Input placeholder="Ingredient"
+                           value={this.state.ingredients[i].name}
+                           onChange={event => {
+                               let ingredientsNew = this.state.ingredients;
+                               ingredientsNew[i].name = event.target.value;
+                               this.setState({ingredients: ingredientsNew})
+                           }}/>
+                </Form.Field>
+            )
+        }
+        return ingredientFields
+    }
 
-                <Button onClick={ async () => {
-                    const recipe = {name, rating};
-                    const response = await fetch('/createRecipe', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application.json'
-                        },
-                        body: JSON.stringify(recipe)
-                    })
+    async addRecipe() {
+        const recipe = {'name': this.state.name, 'rating': this.state.rating, 'ingredients': this.state.ingredients};
+        const response = await fetch('/createRecipe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application.json'
+                },
+                body: JSON.stringify(recipe)
+            }
+        )
+        if (response.ok) {
+            this.setState({
+                name: '', rating: 1, ingredients: [
+                    {'name': '', 'number': 0, 'unit': ''},
+                    {'name': '', 'number': 0, 'unit': ''},
+                    {'name': '', 'number': 0, 'unit': ''},
+                    {'name': '', 'number': 0, 'unit': ''},
+                    {'name': '', 'number': 0, 'unit': ''}
+                ]
+            });
+        }
+    }
 
-                    if (response.ok) {
-                        console.log('response worked');
-                        setName('');
-                        setRating(1);
-                    }
-                }}>Add Recipe</Button>
-            </Form.Field>
-        </Form>
-    )
+    render() {
+        return (
+            <Form>
+                <Form.Field>
+                    <Input placeholder="Recipe Name"
+                           value={this.state.name}
+                           onChange={event => this.setState({name: event.target.value})}/>
+                </Form.Field>
+                <Form.Field>
+                    <Rating icon='heart'
+                            maxRating={3}
+                            rating={this.state.rating}
+                            onRate={(_, data) => {
+                                this.setState({rating: data.rating});
+                            }}/>
+                </Form.Field>
+                {this.createIngredientFormField()}
+                <Form.Field>
+                    <Button onClick={this.addRecipe}>Add Recipe</Button>
+                </Form.Field>
+            </Form>
+        )
+    }
 };
+
+export default RecipeForm;
