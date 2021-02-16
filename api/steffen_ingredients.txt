@@ -1,0 +1,1 @@
+{"Pizza": {"Tomatensauce": "1 Paket", "K\u00e4se": "250 g", "Champignons": "400 g"}, "Linseneintopf": {"Linsen": "500 g", "Kartoffeln": "1,5 kg"}, "Kichererbsen-Spinat-Curry": {"Kichererbsen": "2 Dosen", "Spinat": "500 g"}}
