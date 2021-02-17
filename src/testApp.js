@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './testApp.css';
 
 //this App displays the weekly meal plan
 class Appli extends Component {
@@ -20,15 +21,11 @@ class Appli extends Component {
             .then(recipes => this.setState({recipes: recipes}));
     }
 
-    addNewRecipe() {
-
-    }
-
     render() {
         return (
             <div>
                 <h1>Recipes</h1>
-                <div>
+                <div id="flexContainer">
                     {
                         this.state.recipes.map((entry, index) => <p>{entry["weekday"]}: {entry["recipe"]}</p>)
                     }

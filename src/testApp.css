@@ -1,0 +1,40 @@
+h1 {
+    font-family: Arial;
+    color: #4D4D4D;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 22px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+#flexContainer {
+    display: flex;
+    flex-direction: row;
+    flex: auto;
+
+    font-family: Arial;
+    color: #4D4D4D;
+    font-size: 24px;
+    margin-top: 50px;
+    padding-top: 50px;
+}
+
+button{
+    font-family: Arial;
+    background-color: white;
+    color: black;
+    border: 2px solid #FFB11B;
+    transition-duration: 0.4s;
+}
+button:hover {
+    background-color: #FFB11B;
+    color: white;
+    cursor: pointer;
+}
+.button:active {
+    background-color: #FFB11B;
+    color: white;
+    transform: translateY(8px);
+}

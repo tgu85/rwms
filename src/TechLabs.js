@@ -18,5 +18,6 @@ import React,
     ))</div>}
 </div>);}
 };
-                                export default
+                                export
+                                default
                                 TechLabs;
