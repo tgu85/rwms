@@ -3,19 +3,51 @@
 import json
 import os
 import random
-from flask import Flask, Response, request, render_template
+from flask import Flask, Response, request, render_template, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///site.db"
+db = SQLAlchemy(app)
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    user_recipes = db.Column(db.String(40), unique=True, nullable=False)
+    user_ingredients = db.Column(db.String(40), unique=True, nullable=False)
+    password = db.Column(db.String(60), nullable=False)
+
+    def __repr__(self):
+        return f"User('{self.username}', '{self.user_recipes}', '{self.ingredients}')"
+
+
+class Recipes(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    recipe_name = db.Column(db.String(50), unique=True, nullable=False)
+
+    def __repr__(self):
+        return f"Recipes('{self.recipe_name}')"
+
+
+class Ingredients(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    ingredient = db.Column(db.String(30), unique=True, nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+    unit =  db.Column(db.String(20), nullable=False)
+
+    def __repr__(self):
+        return f"Ingredients('{self.ingredient}', '{self.amount}', '{self.unit}')"
+
 
 # Declaration of Variables, List and Dictionaries
-dict_ingredients_of_recipes = {}
-dict_ingredients_current_recipe = {}
+ingredients_of_recipes = {}
 username_recipes = []
 users = {}
-file_user_recipes = ""
-file_user_ingredients = ""
+filename_user_recipes = ""
+filename_user_ingredients = ""
 current_recipe = ""
-path = "C:\\Users\\The\\Documents\\projectreact 2"
+path = "C:\\Users\\steff\\Google Drive\\PycharmProjects\\RandomMealSchedule\\"
 
 
 # function definition
@@ -35,8 +67,8 @@ def read_user_files():
 
 
 def read_recipe_file():
-    global path, file_user_recipes, username_recipes
-    with open(f"{path}{file_user_recipes}", "r") as file:
+    global path, filename_user_recipes, username_recipes
+    with open(f"{path}{filename_user_recipes}", "r") as file:
         filecontents = file.readlines()
         for line in filecontents:
             active_recipe = line[:-1]
@@ -45,13 +77,13 @@ def read_recipe_file():
 
 
 def read_ingredient_file():
-    global path, file_user_ingredients, dict_ingredients_of_recipes
-    with open(f"{path}{file_user_ingredients}", 'r') as file:
-        if os.stat(f"{path}{file_user_ingredients}").st_size == 0:
+    global path, filename_user_ingredients, ingredients_of_recipes
+    with open(f"{path}{filename_user_ingredients}", 'r') as file:
+        if os.stat(f"{path}{filename_user_ingredients}").st_size == 0:
             pass
         else:
-            dict_ingredients_of_recipes = json.load(file)
-    return dict_ingredients_of_recipes
+            ingredients_of_recipes = json.load(file)
+    return ingredients_of_recipes
 
 
 def save_user_files():
@@ -61,44 +93,66 @@ def save_user_files():
 
 
 def save_recipe_file():
-    global path, file_user_recipes, username_recipes
-    with open(f"{path}{file_user_recipes}", "w") as file:
+    global path, filename_user_recipes, username_recipes
+    with open(f"{path}{filename_user_recipes}", "w") as file:
         for recipe in username_recipes:
             file.writelines(f"{recipe}\n")
 
 
 def save_ingredient_file():
-    global path, file_user_ingredients, dict_ingredients_of_recipes
-    with open(f"{path}{file_user_ingredients}", 'w') as file:
-        json.dump(dict_ingredients_of_recipes, file)
+    global path, filename_user_ingredients, ingredients_of_recipes
+    with open(f"{path}{filename_user_ingredients}", 'w') as file:
+        json.dump(ingredients_of_recipes, file)
 
 
 def add_user(username):
-    global users, file_user_recipes, file_user_ingredients
+    global users, filename_user_recipes, filename_user_ingredients
     read_user_files()
     username = username.lower()
     users[username] = [f"{username}_recipes.txt", f"{username}_ingredients.txt"]
-    file_user_recipes = users[username][0]
-    file_user_ingredients = users[username][1]
-    with open(f"{path}{file_user_recipes}", "x"):
+    filename_user_recipes = users[username][0]
+    filename_user_ingredients = users[username][1]
+    with open(f"{path}{filename_user_recipes}", "x"):
         pass
-    with open(f"{path}{file_user_ingredients}", "x"):
+    with open(f"{path}{filename_user_ingredients}", "x"):
         pass
     save_user_files()
-    return users, file_user_recipes, file_user_ingredients
+    return users, filename_user_recipes, filename_user_ingredients
 
 
-def choose_user(username):
-    global users, file_user_recipes, file_user_ingredients
-    read_user_files()
-    username = username.lower()
-    if username in users:
-        file_user_recipes = users[username][0]
-        file_user_ingredients = users[username][1]
+@app.route("/", methods=["POST", "GET"])
+def index():
+    if request.method == "POST":
+        if request.form.get("redirect_users"):
+            return redirect(url_for("choose_user"))
+        elif request.form.get("redirect_add_recipes"):
+            return redirect(url_for("add_ingredient"))
+        else:
+            return redirect(url_for("random_recipes"))
     else:
-        add_user(username)
-        print("Benutzer wurde erstellt, da noch nicht vorhanden.")
-    return file_user_recipes, file_user_ingredients
+        return render_template("index.html")
+
+
+@app.route("/user", methods=["POST", "GET"])
+def choose_user():
+    global users, filename_user_recipes, filename_user_ingredients
+    if request.method == "POST":
+        if request.form.get("redirect_index"):
+            return redirect(url_for("index"))
+        elif request.form.get("random_meal_plan"):
+            read_user_files()
+            username = request.form.get("username").lower()
+            if username in users:
+                filename_user_recipes = users[username][0]
+                filename_user_ingredients = users[username][1]
+            else:
+                add_user(username)
+                print("Benutzer wurde erstellt, da noch nicht vorhanden.")
+            return filename_user_recipes, filename_user_ingredients #TODO: try to return html and variable (or do something with routing)
+        else:
+            pass
+    else:
+        return render_template("user.html")
 
 
 def add_recipe(recipe_name):
@@ -115,60 +169,74 @@ def add_recipe(recipe_name):
 
 @app.route("/addingredients", methods=["POST", "GET"])
 def add_ingredient():
-    global dict_ingredients_of_recipes, dict_ingredients_current_recipe
-    dict_ingredients_of_recipes = {}
-    read_ingredient_file()
+    global ingredients_of_recipes
     if request.method == "POST":
-        recipe_name = request.form.get("recipe_name")
-        ingredient = request.form.get("ingredient")
-        amount = request.form.get("amount")
-        dict_ingredients_current_recipe[ingredient] = amount
-        dict_ingredients_of_recipes[recipe_name] = dict_ingredients_current_recipe
-        save_ingredient_file()
-        return render_template("add_ingredients.html")
+        if request.form.get("redirect_index"):
+            return redirect(url_for("index"))
+        else:
+            ingredients_of_recipes = {}
+            read_ingredient_file()
+            recipe_name = request.form.get("recipe_name")
+            ingredient = request.form.get("ingredient")
+            amount = request.form.get("amount")
+            #unit = request.form.get("unit") #TODO: implement unit when using SQl
+            add_recipe(recipe_name)
+            if recipe_name in ingredients_of_recipes:
+                ingredients_current_recipe = ingredients_of_recipes[recipe_name]
+            else:
+                ingredients_current_recipe = {}
+            ingredients_current_recipe[ingredient] = amount
+            ingredients_of_recipes[recipe_name] = ingredients_current_recipe
+            save_ingredient_file()
+            return render_template("add_ingredients.html")
     else:
         return render_template("add_ingredients.html")
 
 
-@app.route("/recipesdata", methods=["POST", "GET"])
+@app.route("/recipes", methods=["POST", "GET"])
 def random_recipes():
     global username_recipes
-    read_recipe_file()
-    random_list = []
-    response = []
-    weekdays = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
     if request.method == "POST":
-        while len(random_list) != 7:
-            n = random.randint(0, len(username_recipes) - 1)
-            if n in random_list:
-                pass
-            else:
-                random_list.append(n)
-        for i, weekday in enumerate(weekdays):
-            response.append({"weekday": weekday, "recipe": username_recipes[random_list[i]]})
-        return Response(json.dumps(response), mimetype="application/json")
+        if request.form.get("redirect_index"):
+            return redirect(url_for("index"))
+        else:
+            read_recipe_file()
+            random_list = []
+            response = []
+            weekdays = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
+            while len(random_list) != 7:
+                n = random.randint(0, len(username_recipes) - 1)
+                if n in random_list:
+                    pass
+                else:
+                    random_list.append(n)
+            for i, weekday in enumerate(weekdays):
+                response.append({"weekday": weekday, "recipe": username_recipes[random_list[i]]})
+            return Response(json.dumps(response), mimetype="application/json")
     else:
-        return render_template("WeeklyPlaner.html")
+        return render_template("generate_random_recipes.html")
 
 
-@app.route("/ingredientsdata", methods=["POST", "GET"])
+@app.route("/show_ingredients", methods=["POST", "GET"])
 def show_ingredients():
-    global dict_ingredients_of_recipes
-    read_ingredient_file()
-    response = []
+    global ingredients_of_recipes
     if request.method == "POST":
-        recipe = request.form.get("recipe")
-        for (key, value) in dict_ingredients_of_recipes[recipe].items():
-            response.append({"ingredient": key, "amount": value})
-        return Response(json.dumps(response), mimetype="application/json")
+        if request.form.get("redirect_index"):
+            return redirect(url_for("index"))
+        else:
+            read_ingredient_file()
+            response = []
+            recipe = request.form.get("recipe")
+            for (key, value) in ingredients_of_recipes[recipe].items():
+                response.append({"ingredient": key, "amount": value})
+            return Response(json.dumps(response), mimetype="application/json")
     else:
-        return render_template("test.html")
-
+        return render_template("show_ingredients.html")
 
 
 # testing section
-username = "Steffen"
-choose_user(username)
+# username = "Steffen"
+# choose_user(username)
 # username = str(input("Wähle deinen Benutzer: "))
 # choose_user(str(username).lower())
 # add_recipe("Pizza")

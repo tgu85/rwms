@@ -8,14 +8,14 @@ import os
 import random
 
 # Declaration of Variables, List and Dictionaries
-dict_ingredients_of_recipes = {}
+ingredients_of_recipes = {}
 dict_ingredients_current_recipe = {}
 random_meal_plan = {}
 username_recipes = []
 random_list = []
 users = {}
-file_user_recipes = ""
-file_user_ingredients = ""
+filename_user_recipes = ""
+filename_user_ingredients = ""
 current_recipe = ""
 path = "C:\\Users\\steff\\Google Drive\\PycharmProjects\\RandomMealSchedule\\"
 
@@ -37,7 +37,7 @@ def read_user_files():
 
 
 def read_recipe_file():
-    global path, file_user_recipes, username_recipes
+    global path, filename_user_recipes, username_recipes
     with open(f"{path}{file_user_recipes}", "r") as file:
         filecontents = file.readlines()
         for line in filecontents:
@@ -47,7 +47,7 @@ def read_recipe_file():
 
 
 def read_ingredient_file():
-    global path, file_user_ingredients, dict_ingredients_of_recipes
+    global path, filename_user_ingredients, ingredients_of_recipes
     with open(f"{path}{file_user_ingredients}", 'r') as file:
         if os.stat(f"{path}{file_user_ingredients}").st_size == 0:
             pass
@@ -63,20 +63,20 @@ def save_user_files():
 
 
 def save_recipe_file():
-    global path, file_user_recipes, username_recipes
+    global path, filename_user_recipes, username_recipes
     with open(f"{path}{file_user_recipes}", "w") as file:
         for recipe in username_recipes:
             file.writelines(f"{recipe}\n")
 
 
 def save_ingredient_file():
-    global path, file_user_ingredients, dict_ingredients_of_recipes
+    global path, filename_user_ingredients, ingredients_of_recipes
     with open(f"{path}{file_user_ingredients}", 'w') as file:
         json.dump(dict_ingredients_of_recipes, file)
 
 
 def add_user(username):
-    global users, file_user_recipes, file_user_ingredients
+    global users, filename_user_recipes, filename_user_ingredients
     read_user_files()
     username = username.lower()
     users[username] = [f"{username}_recipes.txt", f"{username}_ingredients.txt"]
@@ -91,7 +91,7 @@ def add_user(username):
 
 
 def choose_user(username):
-    global users, file_user_recipes, file_user_ingredients
+    global users, filename_user_recipes, filename_user_ingredients
     read_user_files()
     username = username.lower()
     if username in users:
@@ -118,7 +118,7 @@ def add_recipe(recipe_name):
 
 
 def add_ingredient(recipe_name, ingredient, amount):
-    global dict_ingredients_of_recipes, dict_ingredients_current_recipe
+    global ingredients_of_recipes, dict_ingredients_current_recipe
     dict_ingredients_of_recipes = {}
     read_ingredient_file()
     dict_ingredients_current_recipe[ingredient] = amount
@@ -142,7 +142,7 @@ def random_recipes():
 
 
 def show_ingredients(recipe="Pizza"):
-    global dict_ingredients_of_recipes
+    global ingredients_of_recipes
     read_ingredient_file()
     response = []
     for (key, value) in dict_ingredients_of_recipes[recipe].items():
