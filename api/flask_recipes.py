@@ -14,17 +14,17 @@ db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
-    user_recipes = db.Column(db.String(40), unique=True, nullable=False)
-    user_ingredients = db.Column(db.String(40), unique=True, nullable=False)
-    password = db.Column(db.String(60), nullable=False)
-
+    #password = db.Column(db.String(60), nullable=False)       #TODO: Maybe later
+    recipes = db.relationship("Recipes", backref="owner", lazy=True)
     def __repr__(self):
-        return f"User('{self.username}', '{self.user_recipes}', '{self.ingredients}')"
+        return f"User('{self.username}')"
 
 
 class Recipes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     recipe_name = db.Column(db.String(50), unique=True, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    ingredients = db.relationship("Ingredients", backref="recipe_name", lazy=True)
 
     def __repr__(self):
         return f"Recipes('{self.recipe_name}')"
@@ -34,7 +34,8 @@ class Ingredients(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     ingredient = db.Column(db.String(30), unique=True, nullable=False)
     amount = db.Column(db.Integer, nullable=False)
-    unit =  db.Column(db.String(20), nullable=False)
+    unit = db.Column(db.String(20), nullable=False)
+    recipes_id = db.Column(db.String(50), db.ForeignKey("recipes.id"), nullable=False)
 
     def __repr__(self):
         return f"Ingredients('{self.ingredient}', '{self.amount}', '{self.unit}')"
@@ -47,7 +48,7 @@ users = {}
 filename_user_recipes = ""
 filename_user_ingredients = ""
 current_recipe = ""
-path = "C:\\Users\\steff\\Google Drive\\PycharmProjects\\RandomMealSchedule\\"
+path = "C:\\Users\\steff\\Google Drive\\PycharmProjects\\rwms\\api\\"
 
 
 # function definition
@@ -117,7 +118,11 @@ def add_user(username):
     with open(f"{path}{filename_user_ingredients}", "x"):
         pass
     save_user_files()
+    user = User(username=username)
+    db.session.add(user)
+    db.session.commit()
     return users, filename_user_recipes, filename_user_ingredients
+
 
 
 @app.route("/", methods=["POST", "GET"])
@@ -147,7 +152,10 @@ def choose_user():
                 filename_user_ingredients = users[username][1]
             else:
                 add_user(username)
-                print("Benutzer wurde erstellt, da noch nicht vorhanden.")
+            if bool(db.session.query(User).filter_by(username=username).first()):
+                print("User exists")
+            else:
+                add_user(username)
             return filename_user_recipes, filename_user_ingredients #TODO: try to return html and variable (or do something with routing)
         else:
             pass

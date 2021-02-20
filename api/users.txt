@@ -1,1 +1,1 @@
-{"steffen": ["steffen_recipes.txt", "steffen_ingredients.txt"]}
+{"steffen": ["steffen_recipes.txt", "steffen_ingredients.txt"], "jonas": ["jonas_recipes.txt", "jonas_ingredients.txt"], "luca": ["luca_recipes.txt", "luca_ingredients.txt"], "tom": ["tom_recipes.txt", "tom_ingredients.txt"], "adolf": ["adolf_recipes.txt", "adolf_ingredients.txt"]}
