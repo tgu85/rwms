@@ -1,3 +1,6 @@
+
+
+
 import React,
     class TechLabs extends
         constructor() {
@@ -21,3 +24,17 @@ import React,
                                 export
                                 default
                                 TechLabs;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

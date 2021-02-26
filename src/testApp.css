@@ -1,40 +1,42 @@
-h1 {
-    font-family: Arial;
-    color: #4D4D4D;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 48px;
-    line-height: 22px;
-    margin-bottom: 50px;
-    margin-top: 50px;
-}
-
-#flexContainer {
-    display: flex;
-    flex-direction: row;
-    flex: auto;
-
-    font-family: Arial;
-    color: #4D4D4D;
-    font-size: 24px;
-    margin-top: 50px;
-    padding-top: 50px;
-}
-
 button{
     font-family: Arial;
     background-color: white;
     color: black;
-    border: 2px solid #FFB11B;
+    border: 2px solid #FFBE17;
     transition-duration: 0.4s;
+    padding: 14px 40px;
+    font-weight: bold;
 }
 button:hover {
-    background-color: #FFB11B;
+    background-color: #FFBE17;
     color: white;
     cursor: pointer;
 }
-.button:active {
-    background-color: #FFB11B;
+button:active {
+    background-color: #FFBE17;
     color: white;
     transform: translateY(8px);
+}
+
+.recipeCard {
+    border-left-width: 2px;
+    border-left-style: solid;
+    border-left-color: #FFBE17;
+    margin-bottom: 50px !important;
+}
+
+.title {
+    color: #4D4D4D;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#heading {
+    padding-left: 0;
+    margin-bottom: 50px;
+}
+
+#pic {
+    width: 50%;
+    height: 50%;
 }

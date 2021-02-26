@@ -1,5 +1,6 @@
 import React, {useState, Component} from 'react';
 import {Button, Form, Input, Rating} from 'semantic-ui-react';
+import './recipeForm.css';
 
 class RecipeForm extends Component {
     constructor() {
@@ -22,7 +23,7 @@ class RecipeForm extends Component {
         let ingredientFields = [];
         for (let i = 0; i < 5; i++) {
             ingredientFields.push(
-                <Form.Field>
+                <Form.Field id="ingredientName">Ingredient
                     <Input placeholder="Ingredient"
                            value={this.state.ingredients[i].name}
                            onChange={event => {
@@ -34,7 +35,7 @@ class RecipeForm extends Component {
                 </Form.Field>
             );
                 ingredientFields.push(
-                <Form.Field>
+                <Form.Field id="number">Amount
                     <Input placeholder="number"
                        value={this.state.ingredients[i].number}
                        onChange={event => {
@@ -46,7 +47,7 @@ class RecipeForm extends Component {
                 </Form.Field>
         );
             ingredientFields.push(
-                <Form.Field>
+                <Form.Field id="unit">Unit
                     <Input placeholder="unit"
                            value={this.state.ingredients[i].unit}
                            onChange={event => {
@@ -66,7 +67,7 @@ class RecipeForm extends Component {
         const response = await fetch('/createRecipe', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application.json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(recipe)
             }
@@ -86,13 +87,15 @@ class RecipeForm extends Component {
 
     render() {
         return (
+            <div>
+                <h1>Add New Recipe</h1>
             <Form>
-                <Form.Field>
+                <Form.Field>Recipe Name
                     <Input placeholder="Recipe Name"
                            value={this.state.name}
                            onChange={event => this.setState({name: event.target.value})}/>
                 </Form.Field>
-                <Form.Field>
+                <Form.Field>Favourite
                     <Rating icon='heart'
                             maxRating={3}
                             rating={this.state.rating}
@@ -105,6 +108,7 @@ class RecipeForm extends Component {
                     <Button onClick={this.addRecipe}>Add Recipe</Button>
                 </Form.Field>
             </Form>
+            </div>
         )
     }
 };

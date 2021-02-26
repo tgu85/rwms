@@ -1,4 +1,3 @@
-
 # import pandas as pd
 import json
 import os
@@ -14,8 +13,9 @@ db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
-    #password = db.Column(db.String(60), nullable=False)       #TODO: Maybe later
+    # password = db.Column(db.String(60), nullable=False)       #TODO: Maybe later
     recipes = db.relationship("Recipes", backref="owner", lazy=True)
+
     def __repr__(self):
         return f"User('{self.username}')"
 
@@ -124,7 +124,6 @@ def add_user(username):
     return users, filename_user_recipes, filename_user_ingredients
 
 
-
 @app.route("/", methods=["POST", "GET"])
 def index():
     if request.method == "POST":
@@ -156,7 +155,7 @@ def choose_user():
                 print("User exists")
             else:
                 add_user(username)
-            return filename_user_recipes, filename_user_ingredients #TODO: try to return html and variable (or do something with routing)
+            return filename_user_recipes, filename_user_ingredients  # TODO: try to return html and variable (or do something with routing)
         else:
             pass
     else:
@@ -175,30 +174,36 @@ def add_recipe(recipe_name):
     save_recipe_file()
     return username_recipes, current_recipe
 
-@app.route("/addingredients", methods=["POST", "GET"])
+
+@app.route("/createRecipe", methods=["POST"])
 def add_ingredient():
     global ingredients_of_recipes
-    if request.method == "POST":
-        if request.form.get("redirect_index"):
-            return redirect(url_for("index"))
-        else:
-            ingredients_of_recipes = {}
-            read_ingredient_file()
-            recipe_name = request.form.get("recipe_name")
-            ingredient = request.form.get("ingredient")
-            amount = request.form.get("amount")
-            #unit = request.form.get("unit") #TODO: implement unit when using SQl
-            add_recipe(recipe_name)
-            if recipe_name in ingredients_of_recipes:
-                ingredients_current_recipe = ingredients_of_recipes[recipe_name]
-            else:
-                ingredients_current_recipe = {}
-            ingredients_current_recipe[ingredient] = amount
-            ingredients_of_recipes[recipe_name] = ingredients_current_recipe
-            save_ingredient_file()
-            return render_template("add_ingredients.html")
-    else:
-        return render_template("add_ingredients.html")
+    print(request.is_json)
+    data = request.get_json()
+    print(data)
+    return "erfolgreich"
+    # if request.method == "POST":
+        # if request.form.get("redirect_index"):
+            # return redirect(url_for("index"))
+        # else:
+           # ingredients_of_recipes = {}
+           # read_ingredient_file()
+            # recipe_name = request.form.get("name")
+            # ingredient = request.form.get("ingredient.name")
+            # amount = request.form.get("number")
+            # unit = request.form.get("unit") #TODO: implement unit when using SQl
+            # add_recipe(recipe_name)
+            # if recipe_name in ingredients_of_recipes:
+               # ingredients_current_recipe = ingredients_of_recipes[recipe_name]
+            # else:
+               # ingredients_current_recipe = {}
+            # ingredients_current_recipe[ingredient] = amount
+            # ingredients_of_recipes[recipe_name] = ingredients_current_recipe
+            # save_ingredient_file()
+           # print(data)
+           # return render_template("add_ingredients.html")
+    # else:
+        # return render_template("add_ingredients.html")
 
 
 @app.route("/recipes", methods=["POST", "GET"])
@@ -266,7 +271,7 @@ def show_ingredients():
 # add_recipe("Kacke")
 # add_recipe("Hallo")
 
-#create DataFrame
+# create DataFrame
 # recipes = pd.DataFrame(data=dict_ingredients_of_recipes)
 # print(recipes)
 
