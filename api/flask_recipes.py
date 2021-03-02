@@ -95,6 +95,8 @@ def register():
 
 @app.route("/", methods=["POST", "GET"])
 def index():
+    print(User.is_authenticated)
+    print(User.is_active)
     if request.method == "POST":
         if request.form.get("redirect_users"):
             return redirect(url_for("login"))
