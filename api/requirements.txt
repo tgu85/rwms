@@ -1,10 +1,8 @@
 Flask
 python-dotenv
 flask_sqlalchemy
-<<<<<<< HEAD
-
-=======
 flask-login
-flask_marshmallow
-flask_Bcrypt
->>>>>>> a3a0023fec4843fbed5d482f5177ad36a28e8062
+flask-marshmallow
+marshmallow-sqlalchemy
+flask-Bcrypt
+
