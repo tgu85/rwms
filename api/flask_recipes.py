@@ -138,6 +138,12 @@ def logout():
     return redirect(url_for("index"))
 
 
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for("index"))
+
+
 @app.route("/addingredients", methods=["POST", "GET"])
 @login_required #TODO: fix this, has to be something with User.is_authenticated or so
 def add_ingredient():
