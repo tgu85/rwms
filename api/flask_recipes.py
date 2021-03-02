@@ -66,11 +66,6 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-#@login_manager.unauthorized_handler       # In unauthorized_handler we have a callback URL #TODO: fix login_required
-#def unauthorized_callback():              # In call back url we can specify where we want to
-#       return redirect(url_for('login'))  # redirect the user in my case it is login page!
-
-
 @app.route("/register", methods=["POST", "GET"])
 def register():
     if request.method == "POST":
@@ -95,7 +90,6 @@ def register():
 
 @app.route("/", methods=["POST", "GET"])
 @app.route("/index", methods=["POST", "GET"])
-@login_required
 def index():
     if request.method == "POST":
         if request.form.get("redirect_users"):
@@ -132,20 +126,14 @@ def login():
             return render_template("login.html")
 
 
-@app.route("/logout")
-def logout():
-    logout_user()
-    return redirect(url_for("index"))
-
-
-#@app.route("/logout")
-#def logout():
-    #logout_user()
-    #return redirect(url_for("index"))
+# @app.route("/logout")
+# def logout():
+#     logout_user()
+#     return redirect(url_for("index"))
 
 
 @app.route("/addingredients", methods=["POST", "GET"])
-@login_required #TODO: fix this, has to be something with User.is_authenticated or so
+#@login_required #TODO: fix this, has to be something with User.is_authenticated or so
 def add_ingredient():
     username = "steffen"
     password = "test"
@@ -176,7 +164,7 @@ def add_ingredient():
 
 
 @app.route("/recipes", methods=["POST", "GET"])
-@login_required
+#@login_required
 def random_recipes():
     username = "steffen"
     password = "test"
@@ -188,11 +176,9 @@ def random_recipes():
         if request.form.get("redirect_index"):
             return redirect(url_for("index"))
         else:
-            print(current_user.id)
             recipe_list_db = Recipes.query.filter_by(user_id=current_user.id).all()
             recipe_schema = RecipeSchema(many=True)
             recipe_list_json = recipe_schema.dump(recipe_list_db)
-            print(recipe_list_json)
             for recipe in recipe_list_json:
                 recipe_list.append(recipe["recipe_name"])
             random_list = []
@@ -212,7 +198,7 @@ def random_recipes():
 
 
 @app.route("/show_ingredients", methods=["POST", "GET"])
-@login_required
+#@login_required
 def show_ingredients():
     if request.method == "POST":
         if request.form.get("redirect_index"):
@@ -228,4 +214,4 @@ def show_ingredients():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="localhost")
