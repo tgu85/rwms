@@ -20,14 +20,9 @@ login_manager.login_view = 'login'
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
-<<<<<<< HEAD
-    # password = db.Column(db.String(60), nullable=False)       #TODO: Maybe later
-    recipes = db.relationship("Recipes", backref="owner", lazy=True)
-=======
     password = db.Column(db.String(60), nullable=False)
     recipes = db.relationship("Recipes", backref="owner", lazy=True)
     ingredients = db.relationship("Ingredients", backref="owner", lazy=True)
->>>>>>> a3a0023fec4843fbed5d482f5177ad36a28e8062
 
     def __repr__(self):
         return f"{self.username}"
@@ -97,10 +92,9 @@ def register():
     if request.method == "GET":
         return render_template("register.html")
 
+
 @app.route("/", methods=["POST", "GET"])
 def index():
-    print(User.is_authenticated)
-    print(User.is_active)
     if request.method == "POST":
         if request.form.get("redirect_users"):
             return redirect(url_for("login"))
@@ -125,51 +119,14 @@ def login():
                 login_user(user)
                 return redirect(url_for("index"))
             else:
-<<<<<<< HEAD
-                add_user(username)
-            return filename_user_recipes, filename_user_ingredients  # TODO: try to return html and variable (or do something with routing)
-=======
                 # flash Login unsuccessful. Please check entries or register
                 return redirect(url_for("login"))
->>>>>>> a3a0023fec4843fbed5d482f5177ad36a28e8062
         else:
             pass
     if request.method == "GET":
         return render_template("login.html")
 
 
-<<<<<<< HEAD
-
-@app.route("/createRecipe", methods=["POST"])
-def add_ingredient():
-    global ingredients_of_recipes
-    print(request.is_json)
-    data = request.get_json()
-    print(data)
-    return "erfolgreich"
-    # if request.method == "POST":
-        # if request.form.get("redirect_index"):
-            # return redirect(url_for("index"))
-        # else:
-           # ingredients_of_recipes = {}
-           # read_ingredient_file()
-            # recipe_name = request.form.get("name")
-            # ingredient = request.form.get("ingredient.name")
-            # amount = request.form.get("number")
-            # unit = request.form.get("unit") #TODO: implement unit when using SQl
-            # add_recipe(recipe_name)
-            # if recipe_name in ingredients_of_recipes:
-               # ingredients_current_recipe = ingredients_of_recipes[recipe_name]
-            # else:
-               # ingredients_current_recipe = {}
-            # ingredients_current_recipe[ingredient] = amount
-            # ingredients_of_recipes[recipe_name] = ingredients_current_recipe
-            # save_ingredient_file()
-           # print(data)
-           # return render_template("add_ingredients.html")
-    # else:
-        # return render_template("add_ingredients.html")
-=======
 @app.route("/addingredients", methods=["POST", "GET"])
 @login_required #TODO: fix this, has to be something with User.is_authenticated or so
 def add_ingredient():
@@ -194,7 +151,6 @@ def add_ingredient():
             return render_template("add_ingredients.html")
     else:
         return render_template("add_ingredients.html")
->>>>>>> a3a0023fec4843fbed5d482f5177ad36a28e8062
 
 
 @app.route("/recipes", methods=["POST", "GET"])
@@ -242,36 +198,5 @@ def show_ingredients():
         return render_template("show_ingredients.html")
 
 
-<<<<<<< HEAD
-# testing section
-# username = "Steffen"
-# choose_user(username)
-# username = str(input("Wähle deinen Benutzer: "))
-# choose_user(str(username).lower())
-# add_recipe("Pizza")
-# add_ingredient(current_recipe, "Tomaten", "4")
-# add_ingredient(current_recipe, "Brokkoli", "1")
-# add_ingredient(current_recipe, "Sauce Hollondaise", "1 Packung")
-# add_recipe("Linseneintopf")
-# add_ingredient(current_recipe, "Linsen", "500 g")
-# add_ingredient(current_recipe, "Kartoffeln", "1,5 kg")
-# # add_recipe("Knoblauchcurry")
-# # add_ingredient("Knoblauchcurry", "Knoblauch", "100 Zehen")
-# # add_ingredient("Knoblauchcurry", "Kokosmilch", "2 Dosen")
-# # random_recipes()
-# # print(meal_plan)
-# # print(username_recipes)
-# add_recipe("Kichererbsen-Spinat-Curry")
-# add_ingredient(current_recipe, "Kichererbsen", "2 Dosen")
-# add_ingredient(current_recipe, "Spinat", "500 g")
-# add_recipe("Kacke")
-# add_recipe("Hallo")
-
-# create DataFrame
-# recipes = pd.DataFrame(data=dict_ingredients_of_recipes)
-# print(recipes)
-
-=======
->>>>>>> a3a0023fec4843fbed5d482f5177ad36a28e8062
 if __name__ == "__main__":
     app.run()
