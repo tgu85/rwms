@@ -1,4 +1,3 @@
-# import pandas as pd
 import json
 import random
 from flask import Flask, Response, request, render_template, redirect, url_for, flash
@@ -126,14 +125,14 @@ def login():
             return render_template("login.html")
 
 
-# @app.route("/logout")
-# def logout():
-#     logout_user()
-#     return redirect(url_for("index"))
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for("index"))
 
 
 @app.route("/addingredients", methods=["POST", "GET"])
-#@login_required #TODO: fix this, has to be something with User.is_authenticated or so
+@login_required
 def add_ingredient():
     username = "steffen"
     password = "test"
@@ -164,7 +163,7 @@ def add_ingredient():
 
 
 @app.route("/recipes", methods=["POST", "GET"])
-#@login_required
+@login_required
 def random_recipes():
     username = "steffen"
     password = "test"
@@ -198,7 +197,7 @@ def random_recipes():
 
 
 @app.route("/show_ingredients", methods=["POST", "GET"])
-#@login_required
+@login_required
 def show_ingredients():
     if request.method == "POST":
         if request.form.get("redirect_index"):
