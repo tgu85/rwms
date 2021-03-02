@@ -2,7 +2,7 @@
 import json
 import random
 from flask import Flask, Response, request, render_template, redirect, url_for, flash
-from flask_login import current_user, login_user, UserMixin, LoginManager, login_required
+from flask_login import current_user, login_user, UserMixin, LoginManager, login_required, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_bcrypt import Bcrypt
@@ -14,7 +14,7 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
-login_manager.login_view = 'login'
+login_manager.login_view = "login"
 
 
 class User(db.Model, UserMixin):
@@ -66,9 +66,9 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-@login_manager.unauthorized_handler       # In unauthorized_handler we have a callback URL #TODO: fix login_required
-def unauthorized_callback():              # In call back url we can specify where we want to
-       return redirect(url_for('login'))  # redirect the user in my case it is login page!
+#@login_manager.unauthorized_handler       # In unauthorized_handler we have a callback URL #TODO: fix login_required
+#def unauthorized_callback():              # In call back url we can specify where we want to
+#       return redirect(url_for('login'))  # redirect the user in my case it is login page!
 
 
 @app.route("/register", methods=["POST", "GET"])
@@ -94,6 +94,8 @@ def register():
 
 
 @app.route("/", methods=["POST", "GET"])
+@app.route("/index", methods=["POST", "GET"])
+@login_required
 def index():
     if request.method == "POST":
         if request.form.get("redirect_users"):
@@ -124,12 +126,26 @@ def login():
         else:
             pass
     if request.method == "GET":
-        return render_template("login.html")
+        if current_user.is_authenticated:
+            return redirect(url_for("index"))
+        else:
+            return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for("index"))
 
 
 @app.route("/addingredients", methods=["POST", "GET"])
 @login_required #TODO: fix this, has to be something with User.is_authenticated or so
 def add_ingredient():
+    username = "steffen"
+    password = "test"
+    user = User.query.filter_by(username=username).first()
+    if user and bcrypt.check_password_hash(user.password, password):
+        login_user(user)
     if request.method == "POST":
         if request.form.get("redirect_index"):
             return redirect(url_for("index"))
@@ -156,14 +172,21 @@ def add_ingredient():
 @app.route("/recipes", methods=["POST", "GET"])
 @login_required
 def random_recipes():
+    username = "steffen"
+    password = "test"
+    user = User.query.filter_by(username=username).first()
+    if user and bcrypt.check_password_hash(user.password, password):
+        login_user(user)
     recipe_list = []
     if request.method == "POST":
         if request.form.get("redirect_index"):
             return redirect(url_for("index"))
         else:
+            print(current_user.id)
             recipe_list_db = Recipes.query.filter_by(user_id=current_user.id).all()
             recipe_schema = RecipeSchema(many=True)
             recipe_list_json = recipe_schema.dump(recipe_list_db)
+            print(recipe_list_json)
             for recipe in recipe_list_json:
                 recipe_list.append(recipe["recipe_name"])
             random_list = []
