@@ -134,11 +134,6 @@ def logout():
 @app.route("/addingredients", methods=["POST", "GET"])
 @login_required
 def add_ingredient():
-    username = "steffen"
-    password = "test"
-    user = User.query.filter_by(username=username).first()
-    if user and bcrypt.check_password_hash(user.password, password):
-        login_user(user)
     if request.method == "POST":
         if request.form.get("redirect_index"):
             return redirect(url_for("index"))
@@ -165,11 +160,6 @@ def add_ingredient():
 @app.route("/recipes", methods=["POST", "GET"])
 @login_required
 def random_recipes():
-    username = "steffen"
-    password = "test"
-    user = User.query.filter_by(username=username).first()
-    if user and bcrypt.check_password_hash(user.password, password):
-        login_user(user)
     recipe_list = []
     if request.method == "POST":
         if request.form.get("redirect_index"):
