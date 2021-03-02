@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Appli from "./testApp";
 import RecipeForm from "./recipeForm";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default function BasicExample() {
@@ -15,7 +16,7 @@ export default function BasicExample() {
             <div>
                 <ul>
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/">Enjoy</Link>
                     </li>
                     <li>
                         <Link to="/new">New Recipe</Link>

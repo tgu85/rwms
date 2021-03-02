@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
 //import 'tachyons';
 import 'semantic-ui-css/semantic.min.css'
 import App from './App.js';
+import './index.css';
+import './testApp.css';
 
 
 ReactDOM.render(
