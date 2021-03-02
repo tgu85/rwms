@@ -1,4 +1,4 @@
-import React, Component} from 'react';
+import { Component } from 'react';
 import {Button, Form, Input, Rating} from 'semantic-ui-react';
 import './recipeForm.css';
 

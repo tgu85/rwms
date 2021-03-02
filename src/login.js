@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import {Button, Form, Input, Rating} from 'semantic-ui-react';
+import {Button, Form, Input,} from 'semantic-ui-react';
 
 class Login extends Component {
     constructor() {
@@ -26,7 +26,7 @@ class Login extends Component {
             }
         }
 
-    render()
+    render() {
     return (
         <div>
             <h1>Login</h1>
@@ -50,4 +50,4 @@ class Login extends Component {
 }
 };
 
-export default RecipeForm;
+export default Login;

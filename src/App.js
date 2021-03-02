@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Appli from "./testApp";
 import RecipeForm from "./recipeForm";
-import { Login } from "./login"
+import Login from "./login";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
