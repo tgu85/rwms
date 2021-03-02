@@ -1,0 +1,53 @@
+import { Component } from 'react';
+import {Button, Form, Input, Rating} from 'semantic-ui-react';
+
+class Login extends Component {
+    constructor() {
+        super();
+        this.state = {
+            username: '',
+            password: '',
+        }
+        this.login = this.login.bind(this);
+    }
+
+    async login() {
+        const user = {'username': this.state.username, 'password': this.state.password};
+        const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            }
+        )
+        if (response.ok) {
+            console.log ("ok");
+            }
+        }
+
+    render()
+    return (
+        <div>
+            <h1>Login</h1>
+            <Form>
+                <Form.Field>username
+                    <Input placeholder="username"
+                           value={this.state.username}
+                           onChange={event => this.setState({username: event.target.value})}/>
+                </Form.Field>
+                <Form.Field>password
+                    <Input placeholder="password"
+                           value={this.state.password}
+                           onChange={event => this.setState({password: event.target.value})}/>
+                </Form.Field>
+                <Form.Field>
+                    <Button onClick={this.login}>Login</Button>
+                </Form.Field>
+            </Form>
+        </div>
+    )
+}
+};
+
+export default RecipeForm;

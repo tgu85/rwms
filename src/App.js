@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Appli from "./testApp";
 import RecipeForm from "./recipeForm";
+import { Login } from "./login"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -21,6 +22,9 @@ export default function BasicExample() {
                     <li>
                         <Link to="/new">New Recipe</Link>
                     </li>
+                    <li>
+                        <Link to="/login">Login</Link>
+                    </li>
                 </ul>
 
                 <hr />
@@ -32,6 +36,9 @@ export default function BasicExample() {
                     <Route path="/new">
                         <RecipeForm />
                     </Route>
+                    <Route path="/new">
+                        <Login />
+                    </Route>
                 </Switch>
             </div>
         </Router>
@@ -40,11 +47,3 @@ export default function BasicExample() {
 
 // You can think of these components as "pages"
 // in your app.
-
-function About() {
-    return (
-        <div>
-            <h2>About</h2>
-        </div>
-    );
-}
