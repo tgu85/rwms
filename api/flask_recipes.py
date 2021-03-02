@@ -138,10 +138,10 @@ def logout():
     return redirect(url_for("index"))
 
 
-@app.route("/logout")
-def logout():
-    logout_user()
-    return redirect(url_for("index"))
+#@app.route("/logout")
+#def logout():
+    #logout_user()
+    #return redirect(url_for("index"))
 
 
 @app.route("/addingredients", methods=["POST", "GET"])

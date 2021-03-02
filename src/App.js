@@ -17,7 +17,7 @@ export default function BasicExample() {
             <div>
                 <ul>
                     <li>
-                        <Link to="/">Enjoy</Link>
+                        <Link to="/recipes">Enjoy</Link>
                     </li>
                     <li>
                         <Link to="/new">New Recipe</Link>

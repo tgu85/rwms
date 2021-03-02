@@ -18,7 +18,7 @@ class Appli extends Component {
     }
 
     createPlan() {
-        fetch("/recipesdata")
+        fetch("/recipes")
             .then(response => response.json())
             .then(recipes => this.setState({recipes: recipes}));
     }
