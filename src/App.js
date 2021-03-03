@@ -17,7 +17,7 @@ export default function BasicExample() {
             <div>
                 <ul>
                     <li>
-                        <Link to="/recipes">Enjoy</Link>
+                        <Link to="/">Enjoy</Link>
                     </li>
                     <li>
                         <Link to="/new">New Recipe</Link>
@@ -36,7 +36,7 @@ export default function BasicExample() {
                     <Route path="/new">
                         <RecipeForm />
                     </Route>
-                    <Route path="/new">
+                    <Route path="/login">
                         <Login />
                     </Route>
                 </Switch>

@@ -139,7 +139,7 @@ def add_ingredient():
 
 
 
-@app.route("/recipes", methods=["POST"])
+@app.route("/recipes", methods=["GET"])
 #@login_required
 def random_recipes():
     username = "steffen"
