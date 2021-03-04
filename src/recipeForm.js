@@ -1,6 +1,6 @@
-import { Component } from 'react';
-import {Button, Form, FormControl, FormGroup} from 'react-bootstrap-v5';
-import { Rating } from 'semantic-ui-react';
+import { useState, Component } from 'react';
+//import {Button, Form, FormControl, FormGroup} from 'react-bootstrap-v5';
+import {Button, Form, Input, Rating} from 'semantic-ui-react';
 import './recipeForm.css';
 
 class RecipeForm extends Component {
@@ -24,40 +24,40 @@ class RecipeForm extends Component {
         let ingredientFields = [];
         for (let i = 0; i < 5; i++) {
             ingredientFields.push(
-                    <Form.Row>
-                        <FormGroup>
-                            <Form.Label id="ingredientName">Ingredient
-                                <Form.Control key={ingredientFields.id} placeholder="Ingredient"
-                                              value={this.state.ingredients[i].name}
-                                              onChange={event => {
-                                                  //ToDo: Use correct state life cycle
-                                                  let ingredientsNew = this.state.ingredients;
-                                                  ingredientsNew[i].name = event.target.value;
-                                                  this.setState({ingredients: ingredientsNew})
-                                              }}/>
-                            </Form.Label>
-                            <Form.Label id="number">Amount
-                                <FormControl key={ingredientFields.id} placeholder="number"
-                                             value={this.state.ingredients[i].number}
-                                             onChange={event => {
-                                                 //ToDo: Use correct state life cycle
-                                                 let ingredientsNew = this.state.ingredients;
-                                                 ingredientsNew[i].number = event.target.value;
-                                                 this.setState({ingredients: ingredientsNew})
-                                             }}/>
-                            </Form.Label>
-                            <Form.Label id="unit">Unit
-                                <FormControl key={ingredientFields.id} placeholder="unit"
-                                             value={this.state.ingredients[i].unit}
-                                             onChange={event => {
-                                                 //ToDo: Use correct state life cycle
-                                                 let ingredientsNew = this.state.ingredients;
-                                                 ingredientsNew[i].unit = event.target.value;
-                                                 this.setState({ingredients: ingredientsNew})
-                                             }}/>
-                            </Form.Label>
-                        </FormGroup>
-                    </Form.Row>
+                <Form.Field id="ingredientName">Ingredient
+                    <Input placeholder="Ingredient"
+                        value={this.state.ingredients[i].name}
+                        onChange={event => {
+                            //ToDo: Use correct state life cycle
+                            let ingredientsNew = this.state.ingredients;
+                            ingredientsNew[i].name = event.target.value;
+                            this.setState({ingredients: ingredientsNew})
+                        }}/>
+                </Form.Field>
+            );
+            ingredientFields.push (
+                <Form.Field id="number">Amount
+                    <Input placeholder="Amount"
+                           value={this.state.ingredients[i].number}
+                           onChange={event => {
+                               //ToDo: Use correct state life cycle
+                               let ingredientsNew = this.state.ingredients;
+                               ingredientsNew[i].number = event.target.value;
+                               this.setState({ingredients: ingredientsNew})
+                           }}/>
+                </Form.Field>
+            );
+            ingredientFields.push (
+                <Form.Field id="unit">Unit
+                    <Input placeholder="Unit"
+                           value={this.state.ingredients[i].unit}
+                           onChange={event => {
+                               //ToDo: Use correct state life cycle
+                               let ingredientsNew = this.state.ingredients;
+                               ingredientsNew[i].unit = event.target.value;
+                               this.setState({ingredients: ingredientsNew})
+                           }}/>
+                </Form.Field>
             );
         }
         return ingredientFields
@@ -90,23 +90,25 @@ class RecipeForm extends Component {
         return (
             <div>
                 <h1>Add New Recipe</h1>
-                <Form.Row>Recipe Name
-                    <FormControl placeholder="Recipe Name"
+                <Form>
+                    <Form.Field>Recipe Name
+                        <Input placeholder="Recipe Name"
                            value={this.state.name}
                            onChange={event => this.setState({name: event.target.value})}/>
-                </Form.Row>
-                <Form.Field>Favourite
-                    <Rating icon='heart'
+                    </Form.Field>
+                    <Form.Field>Favourite
+                        <Rating icon='heart'
                             maxRating={3}
                             rating={this.state.rating}
                             onRate={(_, data) => {
                                 this.setState({rating: data.rating});
                             }}/>
-                </Form.Field>
-                {this.createIngredientFormField()}
-                <Form.Group>
-                    <Button onClick={this.addRecipe}>Add Recipe</Button>
-                </Form.Group>
+                    </Form.Field>
+                    {this.createIngredientFormField()}
+                    <Form.Field>
+                        <Button onClick={this.addRecipe}>Add Recipe</Button>
+                    </Form.Field>
+                </Form>
             </div>
         )
     }

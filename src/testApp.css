@@ -28,12 +28,18 @@ button:active {
 .title {
     color: #4D4D4D;
     font-weight: bold;
+    font-size: 30px;
+}
+
+.recipe {
+    color: #828282;
     font-size: 20px;
 }
 
 #heading {
     padding-left: 0;
-    margin-bottom: 50px;
+    margin-bottom: 75px;
+    font-weight: bold;
 }
 
 #pic {

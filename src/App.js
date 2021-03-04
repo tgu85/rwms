@@ -20,7 +20,7 @@ export default function BasicExample() {
                         <Link to="/">Enjoy</Link>
                     </li>
                     <li>
-                        <Link to="/addingriedients">New Recipe</Link>
+                        <Link to="/addingredients">New Recipe</Link>
                     </li>
                     <li>
                         <Link to="/login">Login</Link>

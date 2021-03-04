@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import {Button, Form, FormControl} from 'react-bootstrap-v5';
+//import {Button, Form, FormControl} from 'react-bootstrap-v5';
+import { Form, Input, Button } from "semantic-ui-react";
 
 class Login extends Component {
     constructor() {
@@ -31,19 +32,19 @@ class Login extends Component {
         <div>
             <h1>Login</h1>
             <Form>
-                <Form.Row>username
-                    <FormControl placeholder="username"
+                <Form.Field>username
+                    <Input placeholder="username"
                            value={this.state.username}
                            onChange={event => this.setState({username: event.target.value})}/>
-                </Form.Row>
-                <Form.Row>password
-                    <FormControl placeholder="password"
+                </Form.Field>
+                <Form.Field>password
+                    <Input placeholder="password"
                            value={this.state.password}
                            onChange={event => this.setState({password: event.target.value})}/>
-                </Form.Row>
-                <Form.Group>
+                </Form.Field>
+                <Form.Field>
                     <Button onClick={this.login}>Login</Button>
-                </Form.Group>
+                </Form.Field>
             </Form>
         </div>
     )

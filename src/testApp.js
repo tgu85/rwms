@@ -30,13 +30,13 @@ class Appli extends Component {
                     <Row>
                         <Col id="heading"><h1>Enjoy</h1></Col>
                     </Row>
-                    <Row className="justify-content-md-center gx-10">
+                    <Row className="justify-content-md-center gx-2">
                     {
                         this.state.recipes.map((entry, index) =>
                             <Col md={3} className="recipeCard">
                                 <p className="title">{entry["weekday"]}</p>
                                 <img src={pic} id="pic" />
-                                <p>{entry["recipe"]}</p></Col>)
+                                <p className="recipe">{entry["recipe"]}</p></Col>)
                     }</Row>
                     <Row className="justify-content-md-center">
                         <Col md={3}>
