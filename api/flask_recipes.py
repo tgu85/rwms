@@ -39,7 +39,7 @@ class Recipes(db.Model):
 
 class Ingredients(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    ingredient = db.Column(db.String(30), unique=True, nullable=False)
+    ingredient = db.Column(db.String(30), unique=False, nullable=False)
     amount = db.Column(db.Integer, nullable=False)
     unit = db.Column(db.String(20), nullable=False)
     recipes_id = db.Column(db.String(50), db.ForeignKey("recipes.recipe_name"), nullable=False)
@@ -141,7 +141,17 @@ def add_ingredient():
             # print(request.is_json)
             # test = request.get_json()
             # print(test)
-            recipe_name = str(request.form.get("recipe_name"))
+
+            # for element in test["ingredients"]:
+            #     if test["ingredients"][element]["name"] == 0 or test["ingredients"][element]["name"] == "":
+            #         pass
+            #     elif test["ingredients"][element]["number"] == 0 or test["ingredients"][element]["number"] == "":
+            #         pass
+            #     elif test["ingredients"][element]["unit"] == 0 or test["ingredients"][element]["unit"] == "":
+            #         pass
+            #     else:
+            #         pass
+            recipe_name = request.form.get("recipe_name")
             ingredient = request.form.get("ingredient")
             amount = request.form.get("amount")
             unit = request.form.get("unit")
@@ -203,4 +213,4 @@ def show_ingredients():
 
 
 if __name__ == "__main__":
-    app.run(host="localhost")
+    app.run(host="localhost", port="3000")
