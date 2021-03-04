@@ -138,10 +138,19 @@ def add_ingredient():
         if request.form.get("redirect_index"):
             return redirect(url_for("index"))
         else:
-            # print(request.is_json)
-            # test = request.get_json()
-            # print(test)
-            recipe_name = str(request.form.get("recipe_name"))
+            print(request.is_json)
+            test = request.get_json()
+            print(test)
+            recipe_name = request.form.get("recipe_name")
+            for element in test["ingredients"]:
+                if test["ingredients"][element]["name"] == 0 or test["ingredients"][element]["name"] == "":
+                    pass
+                elif test["ingredients"][element]["number"] == 0 or test["ingredients"][element]["number"] == "":
+                    pass
+                elif test["ingredients"][element]["unit"] == 0 or test["ingredients"][element]["unit"] == "":
+                    pass
+                else:
+                    pass
             ingredient = request.form.get("ingredient")
             amount = request.form.get("amount")
             unit = request.form.get("unit")

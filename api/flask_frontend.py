@@ -122,20 +122,28 @@ def add_ingredient():
     user = User.query.filter_by(username=username).first()
     if user and bcrypt.check_password_hash(user.password, password):
         login_user(user)
-    # print(request.is_json)
-    # test = request.get_json()
-    # print(test)
-    recipe_name = str(request.form.get("recipe_name"))
-    ingredient = request.form.get("ingredient")
-    amount = request.form.get("amount")
-    unit = request.form.get("unit")
-    recipe = Recipes(recipe_name=recipe_name, owner=current_user)
-    db.session.add(recipe)
-    db.session.commit()
-    current_recipe = Recipes.query.filter_by(recipe_name=recipe_name).first()
-    ingredients = Ingredients(ingredient=ingredient, amount=amount, unit=unit, recipe_name=current_recipe, owner=current_user)
-    db.session.add(ingredients)
-    db.session.commit()
+    get_ingredients = request.get_json()
+    print(get_ingredients)
+    for element in get_ingredients["ingredients"]:
+        if get_ingredients["ingredients"][element]["name"] == 0 or get_ingredients["ingredients"][element]["name"] == "":
+            print("Fehler in Eingabe!")
+        elif get_ingredients["ingredients"][element]["number"] == 0 or get_ingredients["ingredients"][element]["number"] == "":
+            print("Fehler in Eingabe!")
+        elif get_ingredients["ingredients"][element]["unit"] == 0 or get_ingredients["ingredients"][element]["unit"] == "":
+            print("Fehler in Eingabe!")
+        else:
+            recipe_name = get_ingredients["name"]
+            ingredient = get_ingredients["ingredients"][element]["name"]
+            amount = get_ingredients["ingredients"][element]["number"]
+            unit = get_ingredients["ingredients"][element]["unit"]
+            recipe = Recipes(recipe_name=recipe_name, owner=current_user)
+            db.session.add(recipe)
+            db.session.commit()
+            current_recipe = Recipes.query.filter_by(recipe_name=recipe_name).first()
+            ingredients = Ingredients(ingredient=ingredient, amount=amount, unit=unit, recipe_name=current_recipe,
+                                      owner=current_user)
+            db.session.add(ingredients)
+            db.session.commit()
 
 
 
