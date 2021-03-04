@@ -124,7 +124,7 @@ def add_ingredient():
         login_user(user)
     get_ingredients = request.get_json()
     print(get_ingredients)
-    for element in get_ingredients["ingredients"]:
+    for element in range(len(get_ingredients["ingredients"])):
         if get_ingredients["ingredients"][element]["name"] == 0 or get_ingredients["ingredients"][element]["name"] == "":
             print("Fehler in Eingabe!")
         elif get_ingredients["ingredients"][element]["number"] == 0 or get_ingredients["ingredients"][element]["number"] == "":
@@ -144,7 +144,7 @@ def add_ingredient():
                                       owner=current_user)
             db.session.add(ingredients)
             db.session.commit()
-
+    return redirect(url_for("add_ingredient"))
 
 
 @app.route("/recipes", methods=["GET"])
@@ -175,7 +175,6 @@ def random_recipes():
     return Response(json.dumps(response), mimetype="application/json")
 
 
-
 @app.route("/show_ingredients", methods=["POST"])
 #@login_required
 def show_ingredients():
@@ -187,4 +186,4 @@ def show_ingredients():
 
 
 if __name__ == "__main__":
-    app.run(host="localhost")
+    app.run(host="localhost", port="3000")
