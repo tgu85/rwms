@@ -39,7 +39,7 @@ class Recipes(db.Model):
 
 class Ingredients(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    ingredient = db.Column(db.String(30), unique=True, nullable=False)
+    ingredient = db.Column(db.String(30), unique=False, nullable=False)
     amount = db.Column(db.Integer, nullable=False)
     unit = db.Column(db.String(20), nullable=False)
     recipes_id = db.Column(db.String(50), db.ForeignKey("recipes.recipe_name"), nullable=False)
