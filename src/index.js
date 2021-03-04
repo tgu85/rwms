@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-//import 'tachyons';
 import 'semantic-ui-css/semantic.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App.js';
 import './index.css';
 import './testApp.css';

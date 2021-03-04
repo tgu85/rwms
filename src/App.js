@@ -20,7 +20,7 @@ export default function BasicExample() {
                         <Link to="/">Enjoy</Link>
                     </li>
                     <li>
-                        <Link to="/new">New Recipe</Link>
+                        <Link to="/addingriedients">New Recipe</Link>
                     </li>
                     <li>
                         <Link to="/login">Login</Link>
@@ -33,7 +33,7 @@ export default function BasicExample() {
                     <Route exact path="/">
                         <Appli />
                     </Route>
-                    <Route path="/new">
+                    <Route path="/addingredients">
                         <RecipeForm />
                     </Route>
                     <Route path="/login">
@@ -43,7 +43,7 @@ export default function BasicExample() {
             </div>
         </Router>
     );
-}
+};
 
 // You can think of these components as "pages"
 // in your app.
