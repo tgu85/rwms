@@ -1,12 +1,14 @@
 import json
 import random
 from flask import Flask, Response, request, redirect, url_for, flash
+from flask_cors import CORS
 from flask_login import current_user, login_user, UserMixin, LoginManager, login_required, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///user.db"
 app.config["SECRET_KEY"] = "test1234"
 db = SQLAlchemy(app)
@@ -127,10 +129,13 @@ def add_ingredient():
     for element in range(len(get_ingredients["ingredients"])):
         if get_ingredients["ingredients"][element]["name"] == 0 or get_ingredients["ingredients"][element]["name"] == "":
             print("Fehler in Eingabe!")
+            return "Failure"
         elif get_ingredients["ingredients"][element]["number"] == 0 or get_ingredients["ingredients"][element]["number"] == "":
             print("Fehler in Eingabe!")
+            return "Failure"
         elif get_ingredients["ingredients"][element]["unit"] == 0 or get_ingredients["ingredients"][element]["unit"] == "":
             print("Fehler in Eingabe!")
+            return "Failure"
         else:
             recipe_name = get_ingredients["name"]
             ingredient = get_ingredients["ingredients"][element]["name"]
@@ -144,7 +149,7 @@ def add_ingredient():
                                       owner=current_user)
             db.session.add(ingredients)
             db.session.commit()
-    return redirect(url_for("add_ingredient"))
+    return "Success"
 
 
 @app.route("/recipes", methods=["GET"])

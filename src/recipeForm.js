@@ -1,7 +1,8 @@
-import { Component } from 'react';
+import {Component} from 'react';
 //import {Button, Form, FormControl, FormGroup} from 'react-bootstrap-v5';
 import {Button, Form, Input, Rating} from 'semantic-ui-react';
 import './recipeForm.css';
+import {Container, Row} from "react-bootstrap-v5";
 
 class RecipeForm extends Component {
     constructor() {
@@ -10,11 +11,11 @@ class RecipeForm extends Component {
             name: '',
             rating: 1,
             ingredients: [
-                {'name': '', 'number': 0, 'unit': ''},
-                {'name': '', 'number': 0, 'unit': ''},
-                {'name': '', 'number': 0, 'unit': ''},
-                {'name': '', 'number': 0, 'unit': ''},
-                {'name': '', 'number': 0, 'unit': ''}
+                {'name': '', 'number': '', 'unit': ''},
+                {'name': '', 'number': '', 'unit': ''},
+                {'name': '', 'number': '', 'unit': ''},
+                {'name': '', 'number': '', 'unit': ''},
+                {'name': '', 'number': '', 'unit': ''}
             ],
         }
         this.addRecipe = this.addRecipe.bind(this);
@@ -24,40 +25,38 @@ class RecipeForm extends Component {
         let ingredientFields = [];
         for (let i = 0; i < 5; i++) {
             ingredientFields.push(
-                <Form.Field className="column-left">Ingredient
-                    <Input placeholder="Ingredient"
-                        value={this.state.ingredients[i].name}
-                        onChange={event => {
-                            //ToDo: Use correct state life cycle
-                            let ingredientsNew = this.state.ingredients;
-                            ingredientsNew[i].name = event.target.value;
-                            this.setState({ingredients: ingredientsNew})
-                        }}/>
-                </Form.Field>
-            );
-            ingredientFields.push (
-                <Form.Field className="column-center">Amount
-                    <Input placeholder="Amount"
-                           value={this.state.ingredients[i].number}
-                           onChange={event => {
-                               //ToDo: Use correct state life cycle
-                               let ingredientsNew = this.state.ingredients;
-                               ingredientsNew[i].number = event.target.value;
-                               this.setState({ingredients: ingredientsNew})
-                           }}/>
-                </Form.Field>
-            );
-            ingredientFields.push (
-                <Form.Field className="column-right">Unit
-                    <Input placeholder="Unit"
-                           value={this.state.ingredients[i].unit}
-                           onChange={event => {
-                               //ToDo: Use correct state life cycle
-                               let ingredientsNew = this.state.ingredients;
-                               ingredientsNew[i].unit = event.target.value;
-                               this.setState({ingredients: ingredientsNew})
-                           }}/>
-                </Form.Field>
+                <div className="row" key={i}>
+                    <Form.Field className="col-4" key={i}>
+                        <Input placeholder="Ingredient"
+                               value={this.state.ingredients[i].name}
+                               onChange={event => {
+                                   //ToDo: Use correct state life cycle
+                                   let ingredientsNew = this.state.ingredients;
+                                   ingredientsNew[i].name = event.target.value;
+                                   this.setState({ingredients: ingredientsNew})
+                               }}/>
+                    </Form.Field>
+                    <Form.Field className="col-4">
+                        <Input placeholder="Amount"
+                               value={this.state.ingredients[i].number}
+                               onChange={event => {
+                                   //ToDo: Use correct state life cycle
+                                   let ingredientsNew = this.state.ingredients;
+                                   ingredientsNew[i].number = event.target.value;
+                                   this.setState({ingredients: ingredientsNew})
+                               }}/>
+                    </Form.Field>
+                    <Form.Field className="col-4">
+                        <Input placeholder="Unit"
+                               value={this.state.ingredients[i].unit}
+                               onChange={event => {
+                                   //ToDo: Use correct state life cycle
+                                   let ingredientsNew = this.state.ingredients;
+                                   ingredientsNew[i].unit = event.target.value;
+                                   this.setState({ingredients: ingredientsNew})
+                               }}/>
+                    </Form.Field>
+                </div>
             );
         }
         return ingredientFields
@@ -93,20 +92,29 @@ class RecipeForm extends Component {
                 <Form>
                     <Form.Field>Recipe Name
                         <Input className="recipename" placeholder="Recipe Name"
-                           value={this.state.name}
-                           onChange={event => this.setState({name: event.target.value})}/>
+                               value={this.state.name}
+                               onChange={event => this.setState({name: event.target.value})}/>
                     </Form.Field>
                     <Form.Field>Favourite
                         <Rating className="rating" icon='heart'
-                            maxRating={3}
-                            rating={this.state.rating}
-                            onRate={(_, data) => {
-                                this.setState({rating: data.rating});
-                            }}/>
+                                maxRating={3}
+                                rating={this.state.rating}
+                                onRate={(_, data) => {
+                                    this.setState({rating: data.rating});
+                                }}/>
                     </Form.Field>
-                    <div className="Container" id="zutaten">
-                        {this.createIngredientFormField()}
-                    </div>
+                    <Container>
+                        <Row>
+                            <div className="col-4">Ingredient</div>
+                            <div className="col-4">Amount</div>
+                            <div className="col-4">Unit</div>
+                        </Row>
+                    </Container>
+                    <Container>
+                        <div className="container" id="zutaten">
+                            {this.createIngredientFormField()}
+                        </div>
+                    </Container>
                     <Form.Field>
                         <Button onClick={this.addRecipe}>Add Recipe</Button>
                     </Form.Field>
