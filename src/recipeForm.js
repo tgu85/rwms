@@ -1,4 +1,4 @@
-import { useState, Component } from 'react';
+import { Component } from 'react';
 //import {Button, Form, FormControl, FormGroup} from 'react-bootstrap-v5';
 import {Button, Form, Input, Rating} from 'semantic-ui-react';
 import './recipeForm.css';
@@ -24,7 +24,7 @@ class RecipeForm extends Component {
         let ingredientFields = [];
         for (let i = 0; i < 5; i++) {
             ingredientFields.push(
-                <Form.Field id="ingredientName">Ingredient
+                <Form.Field className="column-left">Ingredient
                     <Input placeholder="Ingredient"
                         value={this.state.ingredients[i].name}
                         onChange={event => {
@@ -36,7 +36,7 @@ class RecipeForm extends Component {
                 </Form.Field>
             );
             ingredientFields.push (
-                <Form.Field id="number">Amount
+                <Form.Field className="column-center">Amount
                     <Input placeholder="Amount"
                            value={this.state.ingredients[i].number}
                            onChange={event => {
@@ -48,7 +48,7 @@ class RecipeForm extends Component {
                 </Form.Field>
             );
             ingredientFields.push (
-                <Form.Field id="unit">Unit
+                <Form.Field className="column-right">Unit
                     <Input placeholder="Unit"
                            value={this.state.ingredients[i].unit}
                            onChange={event => {
@@ -92,19 +92,21 @@ class RecipeForm extends Component {
                 <h1>Add New Recipe</h1>
                 <Form>
                     <Form.Field>Recipe Name
-                        <Input placeholder="Recipe Name"
+                        <Input className="recipename" placeholder="Recipe Name"
                            value={this.state.name}
                            onChange={event => this.setState({name: event.target.value})}/>
                     </Form.Field>
                     <Form.Field>Favourite
-                        <Rating icon='heart'
+                        <Rating className="rating" icon='heart'
                             maxRating={3}
                             rating={this.state.rating}
                             onRate={(_, data) => {
                                 this.setState({rating: data.rating});
                             }}/>
                     </Form.Field>
-                    {this.createIngredientFormField()}
+                    <div className="Container" id="zutaten">
+                        {this.createIngredientFormField()}
+                    </div>
                     <Form.Field>
                         <Button onClick={this.addRecipe}>Add Recipe</Button>
                     </Form.Field>

@@ -1,3 +1,32 @@
 #ingredientName {
     border-bottom-color: #FFBE17;
 }
+
+.rating {
+    margin-bottom: 20px;
+}
+
+.recipename {
+    margin-bottom: 10px;
+}
+
+.Container {
+    column-count: 3;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-right: 10px;
+}
+
+.column-left {
+    float: left;
+    width: 33%;
+}
+.column-center {
+    display: inline-block;
+    width: 33%;
+}
+column-right {
+    float: right;
+    width: 33%;
+}
