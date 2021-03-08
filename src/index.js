@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App.js';
 import './index.css';
 import './testApp.css';
+import './recipeForm.css';
 
 
 ReactDOM.render(

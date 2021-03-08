@@ -2,7 +2,7 @@ import {Component} from 'react';
 //import {Button, Form, FormControl, FormGroup} from 'react-bootstrap-v5';
 import {Button, Form, Input, Rating} from 'semantic-ui-react';
 import './recipeForm.css';
-import {Container, Row} from "react-bootstrap-v5";
+import {Col, Container, Row} from "react-bootstrap-v5";
 
 class RecipeForm extends Component {
     constructor() {
@@ -75,11 +75,11 @@ class RecipeForm extends Component {
         if (response.ok) {
             this.setState({
                 name: '', rating: 1, ingredients: [
-                    {'name': '', 'number': 0, 'unit': ''},
-                    {'name': '', 'number': 0, 'unit': ''},
-                    {'name': '', 'number': 0, 'unit': ''},
-                    {'name': '', 'number': 0, 'unit': ''},
-                    {'name': '', 'number': 0, 'unit': ''}
+                    {'name': '', 'number': '', 'unit': ''},
+                    {'name': '', 'number': '', 'unit': ''},
+                    {'name': '', 'number': '', 'unit': ''},
+                    {'name': '', 'number': '', 'unit': ''},
+                    {'name': '', 'number': '', 'unit': ''}
                 ]
             });
         }
@@ -90,12 +90,12 @@ class RecipeForm extends Component {
             <div>
                 <h1>Add New Recipe</h1>
                 <Form>
-                    <Form.Field>Recipe Name
+                    <Form.Field className="col-4" id="forminput">Recipe Name
                         <Input className="recipename" placeholder="Recipe Name"
                                value={this.state.name}
                                onChange={event => this.setState({name: event.target.value})}/>
                     </Form.Field>
-                    <Form.Field>Favourite
+                    <Form.Field id="forminput">Favourite
                         <Rating className="rating" icon='heart'
                                 maxRating={3}
                                 rating={this.state.rating}
@@ -105,18 +105,22 @@ class RecipeForm extends Component {
                     </Form.Field>
                     <Container>
                         <Row>
-                            <div className="col-4">Ingredient</div>
-                            <div className="col-4">Amount</div>
-                            <div className="col-4">Unit</div>
+                            <div className="col-4" id="forminput">Ingredient</div>
+                            <div className="col-4" id="forminput">Amount</div>
+                            <div className="col-4" id="forminput">Unit</div>
                         </Row>
                     </Container>
                     <Container>
-                        <div className="container" id="zutaten">
+                        <div className="container">
                             {this.createIngredientFormField()}
                         </div>
                     </Container>
                     <Form.Field>
-                        <Button onClick={this.addRecipe}>Add Recipe</Button>
+                        <Row className="justify-content-md-center">
+                            <Col md={3}>
+                                <button onClick={this.addRecipe}>Add Recipe</button>
+                            </Col>
+                        </Row>
                     </Form.Field>
                 </Form>
             </div>

@@ -9,23 +9,28 @@ import Appli from "./testApp";
 import RecipeForm from "./recipeForm";
 import Login from "./login";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Container, Nav, Navbar, Row} from "react-bootstrap-v5";
 
 
 export default function BasicExample() {
     return (
         <Router>
             <div>
-                <ul>
-                    <li>
-                        <Link to="/">Enjoy</Link>
-                    </li>
-                    <li>
-                        <Link to="/addingredients">New Recipe</Link>
-                    </li>
-                    <li>
-                        <Link to="/login">Login</Link>
-                    </li>
-                </ul>
+                <Container className="Container">
+                    <Row className="justify-content-md-center gx-2">
+                        <ul>
+                            <li>
+                                <Link to="/">Enjoy</Link>
+                            </li>
+                            <li>
+                                <Link to="/addingredients">New Recipes</Link>
+                            </li>
+                            <li>
+                                <Link to="/login">Login</Link>
+                            </li>
+                        </ul>
+                </Row>
+                </Container>
 
                 <hr />
 

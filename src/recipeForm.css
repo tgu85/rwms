@@ -1,13 +1,5 @@
-#ingredientName {
-    border-bottom-color: #FFBE17;
-}
-
 .rating {
     margin-bottom: 20px;
-}
-
-.recipename {
-    margin-bottom: 10px;
 }
 
 .Container {
@@ -29,4 +21,30 @@
 column-right {
     float: right;
     width: 33%;
+}
+
+#forminput {
+    color: #828282;
+    font-size: 20px;
+}
+
+button{
+    font-family: Arial;
+    background-color: white;
+    color: black;
+    border: 2px solid #FFBE17;
+    transition-duration: 0.4s;
+    padding: 14px 40px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+button:hover {
+    background-color: #FFBE17;
+    color: white;
+    cursor: pointer;
+}
+button:active {
+    background-color: #FFBE17;
+    color: white;
+    transform: translateY(8px);
 }
