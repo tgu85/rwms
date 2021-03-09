@@ -4,10 +4,10 @@ import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App.js';
-import './index.css';
 import './testApp.css';
 import './recipeForm.css';
-
+import './App.css';
+import './index.css';
 
 ReactDOM.render(
     <App />,

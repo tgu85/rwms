@@ -18,7 +18,7 @@ h1 {
   margin-top: 50px;
 }
 
-button{
+Button{
   font-family: Arial;
   background-color: white;
   color: black;
@@ -27,12 +27,12 @@ button{
   padding: 14px 40px;
   font-weight: bold;
 }
-button:hover {
+Button:hover {
   background-color: #FFBE17;
   color: white;
   cursor: pointer;
 }
-button:active {
+Button:active {
   background-color: #FFBE17;
   color: white;
   transform: translateY(8px);

@@ -9,7 +9,9 @@ import Appli from "./testApp";
 import RecipeForm from "./recipeForm";
 import Login from "./login";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Container, Nav, Navbar, Row} from "react-bootstrap-v5";
+import {Col, Container, Nav, Navbar, Row, Button} from "react-bootstrap-v5";
+import './App.css';
+import './index.css';
 
 
 export default function BasicExample() {
@@ -18,17 +20,17 @@ export default function BasicExample() {
             <div>
                 <Container className="Container">
                     <Row className="justify-content-md-center gx-2">
-                        <ul>
-                            <li>
-                                <Link to="/">Enjoy</Link>
-                            </li>
-                            <li>
-                                <Link to="/addingredients">New Recipes</Link>
-                            </li>
-                            <li>
-                                <Link to="/login">Login</Link>
-                            </li>
-                        </ul>
+                        <Col>
+                            <Button class="btn btn-outline-danger">
+                            <Link to="/">Enjoy</Link>
+                            </Button>
+                        </Col>
+                        <Col>
+                            <Link to="/addingredients">Create</Link>
+                        </Col>
+                        <Col>
+                            <Link to="/login">Login</Link>
+                        </Col>
                 </Row>
                 </Container>
 

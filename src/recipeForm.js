@@ -88,7 +88,7 @@ class RecipeForm extends Component {
     render() {
         return (
             <div>
-                <h1>Add New Recipe</h1>
+                <h1>CREATE</h1>
                 <Form>
                     <Form.Field className="col-4" id="forminput">Recipe Name
                         <Input className="recipename" placeholder="Recipe Name"
@@ -118,7 +118,7 @@ class RecipeForm extends Component {
                     <Form.Field>
                         <Row className="justify-content-md-center">
                             <Col md={3}>
-                                <button onClick={this.addRecipe}>Add Recipe</button>
+                                <Button onClick={this.addRecipe}>Add Recipe</Button>
                             </Col>
                         </Row>
                     </Form.Field>

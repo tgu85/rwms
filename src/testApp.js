@@ -28,7 +28,7 @@ class Appli extends Component {
             <div>
                 <Container>
                     <Row>
-                        <Col id="heading"><h1>Enjoy</h1></Col>
+                        <Col id="heading"><h1>ENJOY</h1></Col>
                     </Row>
                     <Row className="justify-content-md-center gx-2">
                     {
