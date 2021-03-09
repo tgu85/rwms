@@ -9,7 +9,8 @@ import Appli from "./testApp";
 import RecipeForm from "./recipeForm";
 import Login from "./login";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Col, Container, Nav, Navbar, Row, Button} from "react-bootstrap-v5";
+import {Col, Container, Row} from "react-bootstrap-v5";
+import {button} from "semantic-ui-react";
 import './App.css';
 import './index.css';
 
@@ -19,11 +20,9 @@ export default function BasicExample() {
         <Router>
             <div>
                 <Container className="Container">
-                    <Row className="justify-content-md-center gx-2">
+                    <Row className="justify-content-md-center gx-10">
                         <Col>
-                            <Button class="btn btn-outline-danger">
                             <Link to="/">Enjoy</Link>
-                            </Button>
                         </Col>
                         <Col>
                             <Link to="/addingredients">Create</Link>

@@ -1,4 +1,4 @@
-Button{
+button{
     font-family: Arial;
     background-color: white;
     color: black;
@@ -7,12 +7,12 @@ Button{
     padding: 14px 40px;
     font-weight: bold;
 }
-Button:hover {
+button:hover {
     background-color: #FFBE17;
     color: white;
     cursor: pointer;
 }
-Button:active {
+button:active {
     background-color: #FFBE17;
     color: white;
     transform: translateY(8px);

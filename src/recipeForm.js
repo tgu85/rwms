@@ -1,6 +1,6 @@
 import {Component} from 'react';
 //import {Button, Form, FormControl, FormGroup} from 'react-bootstrap-v5';
-import {Button, Form, Input, Rating} from 'semantic-ui-react';
+import {Form, Input, Rating, button} from 'semantic-ui-react';
 import './recipeForm.css';
 import {Col, Container, Row} from "react-bootstrap-v5";
 
@@ -118,7 +118,7 @@ class RecipeForm extends Component {
                     <Form.Field>
                         <Row className="justify-content-md-center">
                             <Col md={3}>
-                                <Button onClick={this.addRecipe}>Add Recipe</Button>
+                                <button onClick={this.addRecipe}>Add Recipe</button>
                             </Col>
                         </Row>
                     </Form.Field>
