@@ -74,13 +74,13 @@ def register():
     password = str(get_register_form["password"])
     hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
     if User.query.filter_by(username=username).first():
-        # flash("Benutzername ist schon vergeben, bitte gib einen anderen ein.")
+        flash("Benutzername ist schon vergeben, bitte gib einen anderen ein.")
         return redirect(url_for("register"))
     else:
         user = User(username=username, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        # flash message that account was created and you can log in.
+        flash("Account is created. You can go to the Login page")
         return redirect(url_for("login"))
 
 
@@ -97,7 +97,7 @@ def index():
 
 
 
-@app.route("/login", methods=["POST", "GET"])
+@app.route("/login", methods=["POST"])
 def login():
     get_login_form = request.get_json()
     print(get_login_form)
@@ -109,7 +109,7 @@ def login():
         print("erfolgreich", user)
         return redirect(url_for("index"))
     else:
-        # flash Login unsuccessful. Please check entries or register
+        flash("Login unsuccessful. Please check entries or register")
         return redirect(url_for("login"))
 
 

@@ -54,7 +54,7 @@ class Register extends Component {
                         </Row>
                         <Row>
                             <Form.Field>
-                                <button onClick={this.register}>Login</button>
+                                <button onClick={this.register}>Register</button>
                             </Form.Field>
                         </Row>
                     </Form>
