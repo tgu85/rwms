@@ -13,6 +13,7 @@ import {Col, Container, Row} from "react-bootstrap-v5";
 import {button} from "semantic-ui-react";
 import './App.css';
 import './index.css';
+import Startpage from "./startpage";
 
 
 export default function BasicExample() {
@@ -49,7 +50,7 @@ export default function BasicExample() {
                         <Login />
                     </Route>
                     <Route path="/start">
-                        <Login />
+                        <Startpage />
                     </Route>
                 </Switch>
             </div>

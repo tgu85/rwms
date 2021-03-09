@@ -25,8 +25,11 @@ class Login extends Component {
             }
         )
         if (response.ok) {
-            console.log ("ok");
+            this.state = {
+                username: '',
+                password: '',
             }
+        }
         }
 
     render() {
