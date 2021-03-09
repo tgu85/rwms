@@ -70,18 +70,18 @@ def load_user(user_id):
 def register():
     get_register_form = request.get_json()
     print(get_register_form)
-    #username = request.form.get("username").lower()
-    #password = request.form.get("password")
-    # hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
-    # if User.query.filter_by(username=username).first():
-    #     # flash("Benutzername ist schon vergeben, bitte gib einen anderen ein.")
-    #     return redirect(url_for("register"))
-    # else:
-    #     user = User(username=username, password=hashed_password)
-    #     db.session.add(user)
-    #     db.session.commit()
-    #     # flash message that account was created and you can log in.
-    #     return redirect(url_for("login"))
+    username = str(get_register_form["username"]).lower()
+    password = str(get_register_form["password"])
+    hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
+    if User.query.filter_by(username=username).first():
+        # flash("Benutzername ist schon vergeben, bitte gib einen anderen ein.")
+        return redirect(url_for("register"))
+    else:
+        user = User(username=username, password=hashed_password)
+        db.session.add(user)
+        db.session.commit()
+        # flash message that account was created and you can log in.
+        return redirect(url_for("login"))
 
 
 
@@ -102,15 +102,15 @@ def index():
 def login():
     get_login_form = request.get_json()
     print(get_login_form)
-    #username = request.form.get("username").lower()
-    #password = request.form.get("password")
-    # user = User.query.filter_by(username=username).first()
-    # if user and bcrypt.check_password_hash(user.password, password):
-    #     login_user(user)
-    #     return redirect(url_for("index"))
-    # else:
-    #     # flash Login unsuccessful. Please check entries or register
-    #     return redirect(url_for("login"))
+    username = str(get_login_form["username"]).lower()
+    password = str(get_login_form["password"])
+    user = User.query.filter_by(username=username).first()
+    if user and bcrypt.check_password_hash(user.password, password):
+        login_user(user)
+        return redirect(url_for("index"))
+    else:
+        # flash Login unsuccessful. Please check entries or register
+        return redirect(url_for("login"))
 
 
 
