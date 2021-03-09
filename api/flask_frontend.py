@@ -74,14 +74,16 @@ def register():
     password = str(get_register_form["password"])
     hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
     if User.query.filter_by(username=username).first():
-        flash("Benutzername ist schon vergeben, bitte gib einen anderen ein.")
-        return redirect(url_for("register"))
+        response = {"message": "Benutzername ist schon vergeben, bitte gib einen anderen ein."}
+        return Response(json.dumps(response), mimetype="application/json")
+        #return redirect(url_for("register"))
     else:
         user = User(username=username, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash("Account is created. You can go to the Login page")
-        return redirect(url_for("login"))
+        response = {"message": "Account wurde erstellt. Bitte geh zur Loginseite und melde dich an."}
+        return Response(json.dumps(response), mimetype="application/json")
+        #return redirect(url_for("login"))
 
 
 
@@ -109,8 +111,9 @@ def login():
         print("erfolgreich", user)
         return redirect(url_for("index"))
     else:
-        flash("Login unsuccessful. Please check entries or register")
-        return redirect(url_for("login"))
+        response = {"message": "Login fehlerhaft, bitte Username und Passwort überprüfen."}
+        return Response(json.dumps(response), mimetype="application/json")
+        #return redirect(url_for("login"))
 
 
 
@@ -121,7 +124,7 @@ def login():
 
 
 @app.route("/addingredients", methods=["POST"])
-#@login_required
+@login_required
 def add_ingredient():
     #username = "steffen"
     #password = "test"
@@ -156,7 +159,7 @@ def add_ingredient():
 
 
 @app.route("/recipes", methods=["GET"])
-#@login_required
+@login_required
 def random_recipes():
     #username = "steffen"
    #password = "test"
@@ -184,7 +187,7 @@ def random_recipes():
 
 
 @app.route("/show_ingredients", methods=["POST"])
-#@login_required
+@login_required
 def show_ingredients():
     recipe_name = request.form.get("recipe")
     ingredient_list_db = Ingredients.query.filter_by(recipes_id=recipe_name, user_id=current_user.id).all()
