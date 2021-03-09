@@ -20,15 +20,18 @@ export default function BasicExample() {
         <Router>
             <div>
                 <Container className="Container">
-                    <Row className="justify-content-md-center gx-10">
+                    <Row className="justify-content-center gx-10">
                         <Col>
-                            <Link to="/">Enjoy</Link>
+                            <Link className="navi" to="/start">Start</Link>
                         </Col>
                         <Col>
-                            <Link to="/addingredients">Create</Link>
+                            <Link className="navi" to="/">Enjoy</Link>
                         </Col>
                         <Col>
-                            <Link to="/login">Login</Link>
+                            <Link className="navi" to="/addingredients">Create</Link>
+                        </Col>
+                        <Col>
+                            <Link className="navi" to="/login">Login</Link>
                         </Col>
                 </Row>
                 </Container>
@@ -43,6 +46,9 @@ export default function BasicExample() {
                         <RecipeForm />
                     </Route>
                     <Route path="/login">
+                        <Login />
+                    </Route>
+                    <Route path="/start">
                         <Login />
                     </Route>
                 </Switch>

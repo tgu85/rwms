@@ -1,9 +1,20 @@
 .Container {
-    column-count: 3;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-right: 10px;
+    margin-right: 5px;
+}
+
+.navi {
+    color: #828282;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.navi:hover {
+    background: #FFBE17;
+    color: white;
+    border-radius: 5px;
 }

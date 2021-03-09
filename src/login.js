@@ -1,6 +1,8 @@
 import { Component } from 'react';
 //import {Button, Form, FormControl} from 'react-bootstrap-v5';
 import { Form, Input, button } from "semantic-ui-react";
+import {Container} from "react-bootstrap-v5";
+import './login.css';
 
 class Login extends Component {
     constructor() {
@@ -31,6 +33,7 @@ class Login extends Component {
     return (
         <div>
             <h1>Login</h1>
+            <Container>
             <Form>
                 <Form.Field>username
                     <Input placeholder="username"
@@ -46,6 +49,7 @@ class Login extends Component {
                     <button onClick={this.login}>Login</button>
                 </Form.Field>
             </Form>
+            </Container>
         </div>
     )
 }
