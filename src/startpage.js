@@ -4,6 +4,9 @@ import {Col, Container, Row} from "react-bootstrap-v5";
 import {Link, Route, Switch} from "react-router-dom";
 import headerpic from './header.jpg';
 import './index.css';
+import Appli from "./testApp";
+import RecipeForm from "./recipeForm";
+import Login from "./login";
 
 class Startpage extends Component {
     render () {

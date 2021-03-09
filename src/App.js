@@ -10,10 +10,10 @@ import RecipeForm from "./recipeForm";
 import Login from "./login";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Col, Container, Row} from "react-bootstrap-v5";
-import {button} from "semantic-ui-react";
 import './App.css';
 import './index.css';
 import Startpage from "./startpage";
+import Register from "./register";
 
 
 export default function BasicExample() {
@@ -34,6 +34,9 @@ export default function BasicExample() {
                         <Col>
                             <Link className="navi" to="/login">Login</Link>
                         </Col>
+                        <Col>
+                            <Link className="navi" to="/register">Register</Link>
+                        </Col>
                 </Row>
                 </Container>
 
@@ -51,6 +54,9 @@ export default function BasicExample() {
                     </Route>
                     <Route path="/start">
                         <Startpage />
+                    </Route>
+                    <Route path="/register">
+                        <Register />
                     </Route>
                 </Switch>
             </div>
