@@ -86,8 +86,7 @@ def register():
 
 
 
-@app.route("/", methods=["POST"])
-@app.route("/index", methods=["POST"])
+@app.route("/", methods=["POST", "GET"])
 def index():
     if request.form.get("redirect_users"):
         return redirect(url_for("login"))
@@ -98,7 +97,7 @@ def index():
 
 
 
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["POST", "GET"])
 def login():
     get_login_form = request.get_json()
     print(get_login_form)
@@ -107,6 +106,7 @@ def login():
     user = User.query.filter_by(username=username).first()
     if user and bcrypt.check_password_hash(user.password, password):
         login_user(user)
+        print("erfolgreich", user)
         return redirect(url_for("index"))
     else:
         # flash Login unsuccessful. Please check entries or register
@@ -123,11 +123,11 @@ def login():
 @app.route("/addingredients", methods=["POST"])
 #@login_required
 def add_ingredient():
-    username = "steffen"
-    password = "test"
-    user = User.query.filter_by(username=username).first()
-    if user and bcrypt.check_password_hash(user.password, password):
-        login_user(user)
+    #username = "steffen"
+    #password = "test"
+    #user = User.query.filter_by(username=username).first()
+    #if user and bcrypt.check_password_hash(user.password, password):
+        #login_user(user)
     get_ingredients = request.get_json()
     for element in range(len(get_ingredients["ingredients"])):
         if get_ingredients["ingredients"][element]["name"] == 0 or get_ingredients["ingredients"][element]["name"] == "":
@@ -158,11 +158,11 @@ def add_ingredient():
 @app.route("/recipes", methods=["GET"])
 #@login_required
 def random_recipes():
-    username = "steffen"
-    password = "test"
-    user = User.query.filter_by(username=username).first()
-    if user and bcrypt.check_password_hash(user.password, password):
-        login_user(user)
+    #username = "steffen"
+   #password = "test"
+    #user = User.query.filter_by(username=username).first()
+    #if user and bcrypt.check_password_hash(user.password, password):
+        #login_user(user)
     recipe_list = []
     recipe_list_db = Recipes.query.filter_by(user_id=current_user.id).all()
     recipe_schema = RecipeSchema(many=True)
