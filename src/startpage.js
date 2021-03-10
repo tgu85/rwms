@@ -13,7 +13,7 @@ class Startpage extends Component {
         return (
             <div>
                 <Container>
-                    <Row>
+                    <Row id="headerRow">
                         <header>
                             <img src={headerpic} id="headerpic"></img>
                         </header>
@@ -26,8 +26,9 @@ class Startpage extends Component {
                             <p>text text text text text</p>
                             <p>text text text text text</p>
                         </div>
-                        <button>Go!
-                            <Link className="navi" to="/addingredients"></Link>
+                        <button onClick={
+                            <Link to="/addingredients"/>
+                        }>Go!
                         </button>
                     </Col>
 
@@ -39,7 +40,7 @@ class Startpage extends Component {
                             <p>text text text text text</p>
                         </div>
                         <button>Go!
-                            <Link className="navi" to="/"></Link>
+                            <Link to={location => ({ ...location, pathname: "/" })} />
                         </button>
                     </Col>
 

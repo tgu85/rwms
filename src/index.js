@@ -9,6 +9,7 @@ import './recipeForm.css';
 import './App.css';
 import './login.css';
 import './index.css';
+import './startpage.css';
 
 ReactDOM.render(
     <App />,
