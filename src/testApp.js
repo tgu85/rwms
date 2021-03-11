@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Col, Container, Row} from "react-bootstrap-v5";
-import pic from './veggi-bowl.jpg';
+import pic from './salad.jpg.';
 import './testApp.css';
 
 //this App displays the weekly meal plan
