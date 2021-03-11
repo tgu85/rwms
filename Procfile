@@ -1,1 +1,1 @@
-web: gunicorn api.flask_frontend:app
+web: npm start
