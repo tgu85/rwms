@@ -11,6 +11,7 @@ app = Flask(__name__)
 CORS(app, supports_credentials=True, origins="https://kraut-und-rueben.herokuapp.com")
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///user.db"
 app.config["SECRET_KEY"] = "test1234"
+app.config['SESSION_COOKIE_SAMESITE'] = "None"
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 bcrypt = Bcrypt(app)
