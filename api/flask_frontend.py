@@ -109,7 +109,7 @@ def login():
     if user and bcrypt.check_password_hash(user.password, password):
         login_user(user)
         print("erfolgreich", user)
-        return redirect(url_for("index"))
+        return "success"
     else:
         response = {"message": "Login fehlerhaft, bitte Username und Passwort überprüfen."}
         return Response(json.dumps(response), mimetype="application/json")
