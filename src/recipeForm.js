@@ -64,7 +64,7 @@ class RecipeForm extends Component {
 
     async addRecipe() {
         const recipe = {'name': this.state.name, 'rating': this.state.rating, 'ingredients': this.state.ingredients};
-        const response = await fetch('/addingredients', {
+        const response = await fetch('process.env.REACT_APP_APIURL + /addingredients', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

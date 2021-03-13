@@ -16,7 +16,7 @@ class Register extends Component {
 
     async register() {
         const user = {'username': this.state.username, 'password': this.state.password};
-        const response = await fetch('/register', {
+        const response = await fetch('process.env.REACT_APP_APIURL + /register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
