@@ -12,6 +12,7 @@ CORS(app, supports_credentials=True, origins="https://kraut-und-rueben.herokuapp
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///user.db"
 app.config["SECRET_KEY"] = "test1234"
 app.config['SESSION_COOKIE_SAMESITE'] = "None"
+app.config['SESSION_COOKIE_SECURE'] = True
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 bcrypt = Bcrypt(app)
