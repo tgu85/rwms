@@ -78,16 +78,14 @@ def register():
     if User.query.filter_by(username=username).first():
         response = {"message": "Benutzername ist schon vergeben, bitte gib einen anderen ein."}
         return Response(json.dumps(response), mimetype="application/json")
-        #return redirect(url_for("register"))
+        # return redirect(url_for("register"))
     else:
         user = User(username=username, password=hashed_password)
         db.session.add(user)
         db.session.commit()
         response = {"message": "Account wurde erstellt. Bitte geh zur Loginseite und melde dich an."}
         return Response(json.dumps(response), mimetype="application/json")
-        #return redirect(url_for("login"))
-
-
+        # return redirect(url_for("login"))
 
 
 @app.route("/", methods=["POST", "GET"])
@@ -98,7 +96,6 @@ def index():
         return redirect(url_for("add_ingredient"))
     else:
         return redirect(url_for("random_recipes"))
-
 
 
 @app.route("/login", methods=["POST"])
@@ -115,33 +112,35 @@ def login():
     else:
         response = {"message": "Login fehlerhaft, bitte Username und Passwort überprüfen."}
         return Response(json.dumps(response), mimetype="application/json")
-        #return redirect(url_for("login"))
+        # return redirect(url_for("login"))
 
 
-
-# @app.route("/logout")
-# def logout():
-#     logout_user()
-#     return redirect(url_for("index"))
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for("index"))
 
 
 @app.route("/addingredients", methods=["POST"])
 @login_required
 def add_ingredient():
-    #username = "steffen"
-    #password = "test"
-    #user = User.query.filter_by(username=username).first()
-    #if user and bcrypt.check_password_hash(user.password, password):
-        #login_user(user)
+    # username = "steffen"
+    # password = "test"
+    # user = User.query.filter_by(username=username).first()
+    # if user and bcrypt.check_password_hash(user.password, password):
+    # login_user(user)
     get_ingredients = request.get_json()
     for element in range(len(get_ingredients["ingredients"])):
-        if get_ingredients["ingredients"][element]["name"] == 0 or get_ingredients["ingredients"][element]["name"] == "":
+        if get_ingredients["ingredients"][element]["name"] == 0 or get_ingredients["ingredients"][element][
+            "name"] == "":
             print("Fehler in Eingabe!")
             return "Failure"
-        elif get_ingredients["ingredients"][element]["number"] == 0 or get_ingredients["ingredients"][element]["number"] == "":
+        elif get_ingredients["ingredients"][element]["number"] == 0 or get_ingredients["ingredients"][element][
+            "number"] == "":
             print("Fehler in Eingabe!")
             return "Failure"
-        elif get_ingredients["ingredients"][element]["unit"] == 0 or get_ingredients["ingredients"][element]["unit"] == "":
+        elif get_ingredients["ingredients"][element]["unit"] == 0 or get_ingredients["ingredients"][element][
+            "unit"] == "":
             print("Fehler in Eingabe!")
             return "Failure"
         else:
@@ -163,11 +162,11 @@ def add_ingredient():
 @app.route("/recipes", methods=["GET"])
 @login_required
 def random_recipes():
-    #username = "steffen"
-   #password = "test"
-    #user = User.query.filter_by(username=username).first()
-    #if user and bcrypt.check_password_hash(user.password, password):
-        #login_user(user)
+    # username = "steffen"
+    # password = "test"
+    # user = User.query.filter_by(username=username).first()
+    # if user and bcrypt.check_password_hash(user.password, password):
+    # login_user(user)
     recipe_list = []
     recipe_list_db = Recipes.query.filter_by(user_id=current_user.id).all()
     recipe_schema = RecipeSchema(many=True)
