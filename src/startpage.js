@@ -40,7 +40,7 @@ class Startpage extends Component {
                             <p>text text text text text</p>
                         </div>
                         <button>Go!
-                            <Link to={location => ({ ...location, pathname: "/" })} />
+                            <Link to={location => ({ ...location, pathname: "/recipess" })} />
                         </button>
                     </Col>
 

@@ -18,7 +18,7 @@ class Appli extends Component {
     }
 
     createPlan() {
-        fetch("/recipes")
+        fetch("/process.env.REACT_APP_APIURL + /recipes")
             .then(response => response.json())
             .then(recipes => this.setState({recipes: recipes}));
     }

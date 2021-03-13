@@ -23,10 +23,10 @@ export default function BasicExample() {
                 <Container className="Container">
                     <Row className="justify-content-center gx-10">
                         <Col>
-                            <Link className="navi" to="/start">Start</Link>
+                            <Link className="navi" to="/">Start</Link>
                         </Col>
                         <Col>
-                            <Link className="navi" to="/">Enjoy</Link>
+                            <Link className="navi" to="/recipes">Enjoy</Link>
                         </Col>
                         <Col>
                             <Link className="navi" to="/addingredients">Create</Link>
@@ -43,7 +43,7 @@ export default function BasicExample() {
                 <hr />
 
                 <Switch>
-                    <Route exact path="/">
+                    <Route exact path="/recipes">
                         <Appli />
                     </Route>
                     <Route path="/addingredients">
@@ -52,7 +52,7 @@ export default function BasicExample() {
                     <Route path="/login">
                         <Login />
                     </Route>
-                    <Route path="/start">
+                    <Route path="/">
                         <Startpage />
                     </Route>
                     <Route path="/register">
