@@ -8,7 +8,7 @@ from flask_marshmallow import Marshmallow
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, supports_credentials=True, origins="https://kraut-und-rueben.herokuapp.com")
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///user.db"
 app.config["SECRET_KEY"] = "test1234"
 db = SQLAlchemy(app)
