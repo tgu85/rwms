@@ -17,7 +17,7 @@ class Login extends Component {
 
     async login() {
         const user = {'username': this.state.username, 'password': this.state.password};
-        const response = await fetch('process.env.REACT_APP_APIURL + /login', {
+        const response = await fetch(process.env.REACT_APP_APIURL + '/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
