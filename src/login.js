@@ -22,7 +22,7 @@ class Login extends Component {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({username: 'steffen', password: 'test'}), //#JSON.stringify(user),
+                body: JSON.stringify(user),
                 credentials: "include",
             }
         )
