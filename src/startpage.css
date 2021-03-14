@@ -1,9 +1,31 @@
 .startText {
-    padding-right: 100px;
+    padding-right: 50px;
+    padding-left: 50px;
 }
 
-.title {
+.titleStart {
     color: #4D4D4D;
     font-weight: bold;
     font-size: 30px;
+    text-align: center;
+}
+
+.butStart {
+    align-items: center;
+}
+
+.startBox {
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-top-width: 2px;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: #FFBE17;
+    border-bottom-color: #FFBE17;
+    border-right-color: #FFBE17;
+    border-left-color: #FFBE17;
+    padding-right: 5px;
 }
