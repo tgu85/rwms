@@ -10,7 +10,9 @@
 .navi {
     color: #828282;
     border-radius: 3px;
-    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: 10px;
     text-decoration: none;
 }
 
@@ -18,4 +20,17 @@
     background: #FFBE17;
     color: white;
     border-radius: 3px;
+}
+
+.logoNav {
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+}
+
+.navbarST {
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+    margin-bottom: -2rem !important;
+    margin-top: -2rem !important;
 }

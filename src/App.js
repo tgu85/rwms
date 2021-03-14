@@ -9,9 +9,10 @@ import Appli from "./testApp";
 import RecipeForm from "./recipeForm";
 import Login from "./login";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Col, Container, Row} from "react-bootstrap-v5";
+import {Col, Container, Navbar, Row, Nav} from "react-bootstrap-v5";
 import './App.css';
 import './index.css';
+import logo from './Monkey.png'
 import Startpage from "./startpage";
 import Register from "./register";
 
@@ -19,26 +20,15 @@ import Register from "./register";
 export default function BasicExample() {
     return (
         <Router>
-            <div>
-                <Container className="Container">
-                    <Row className="justify-content-center gx-10">
-                        <Col>
-                            <Link className="navi" to="/">Start</Link>
-                        </Col>
-                        <Col>
-                            <Link className="navi" to="/randommealplan">Enjoy</Link>
-                        </Col>
-                        <Col>
-                            <Link className="navi" to="/addingredients">Create</Link>
-                        </Col>
-                        <Col>
-                            <Link className="navi" to="/login">Login</Link>
-                        </Col>
-                        <Col>
-                            <Link className="navi" to="/register">Register</Link>
-                        </Col>
-                </Row>
-                </Container>
+            <div className="navbarSt">
+                <Navbar>
+                    <img className="logoNav" src={logo}></img>
+                    <Nav.Link className="navi" href="/">Start</Nav.Link>
+                    <Nav.Link className="navi" href="/randommealplan">Enjoy</Nav.Link>
+                    <Nav.Link className="navi" href="/addingredients">Create</Nav.Link>
+                    <Nav.Link className="navi" href="/login">Login</Nav.Link>
+                    <Nav.Link className="navi" href="/register">Register</Nav.Link>
+                </Navbar>
 
                 <hr />
 
