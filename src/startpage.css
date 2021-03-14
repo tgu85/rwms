@@ -11,6 +11,7 @@
 }
 
 .butStart {
+    display: flex;
     align-items: center;
 }
 
@@ -27,5 +28,9 @@
     border-bottom-color: #FFBE17;
     border-right-color: #FFBE17;
     border-left-color: #FFBE17;
-    padding-right: 10px;
+    height: 320px;
+}
+
+.linkStart {
+    text-decoration: none;
 }

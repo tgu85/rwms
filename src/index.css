@@ -26,19 +26,19 @@ button{
   transition-duration: 0.4s;
   padding: 14px 40px;
   font-weight: bold;
-  border-radius: 10px;
+  border-radius: 3px;
 }
 button:hover {
   background-color: #FFBE17;
   color: white;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 3px;
 }
 button:active {
   background-color: #FFBE17;
   color: white;
   transform: translateY(8px);
-  border-radius: 10px;
+  border-radius: 3px;
 }
 
 .title {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { button } from "semantic-ui-react";
 import {Col, Container, Row} from "react-bootstrap-v5";
 import {Link} from "react-router-dom";
-import headerpic from './header.jpg';
+import headerpic from './header2.png';
 import './startpage.css';
 import './index.css';
 
@@ -19,13 +19,13 @@ class Startpage extends Component {
                 <Row>
                     <Col className="startText">
                         <p className="titleStart">Create</p>
-                        <div>
+                        <div className="startBox">
                             <p>You already have a bunch of recipes?
                                 Add them to your own recipe database and create your random meal plan with your own recipes.</p>
                             <p>So you know exactly what to do when it comes to cooking and you do not have to learn new, maybe difficult recipes. </p>
                             <p>Let's start and create your own digital cookbook!</p>
                         </div>
-                        <Link to="/addingredients">
+                        <Link className="linkStart" to="/addingredients">
                         <button>Go!</button>
                         </Link>
                     </Col>
@@ -41,14 +41,14 @@ class Startpage extends Component {
                             <p>The random meal plan can help you to force a healthy lifestyle, because you can easily plan your meals for the week and avoid ordering too many pizzas a week. </p>
                             </div>
                             </div>
-                        <Link to="/randommealplan">
+                        <Link className="linkStart" to="/randommealplan">
                             <button className="butStart">Go!</button>
                         </Link>
                     </Col>
 
                     <Col className="startText">
                         <p className="titleStart">Discover</p>
-                        <div>
+                        <div className="startBox">
                             <p>This is your digital cookbook.</p>
                             <p>Here you get an overview over your own recipe database.</p>
                             <p>Every added recipe will be shown in this section, so you will always remember what amazing recipes you know and love.</p>
