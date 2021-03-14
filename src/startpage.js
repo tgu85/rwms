@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { button } from "semantic-ui-react";
 import {Col, Container, Row} from "react-bootstrap-v5";
-import {Link, Route, Switch} from "react-router-dom";
+import {Link} from "react-router-dom";
 import headerpic from './header.jpg';
 import './startpage.css';
 import './index.css';
-import Appli from "./testApp";
-import RecipeForm from "./recipeForm";
-import Login from "./login";
 
 class Startpage extends Component {
     render () {
@@ -36,12 +33,14 @@ class Startpage extends Component {
                     <Col className="startText">
                         <p className="titleStart">Enjoy</p>
                         <div className="startBox">
+                            <div>
                             <p>In the Enjoy section you can let the website create a random weekly meal plan for you.</p>
                             <p>If you have added any own recipes in the Create section, the random meal plan will be filled with your own recipes.
                             Letting the website tell you what to cook on each day of a week saves you a lot of time.
                                 Besides that, you can go grocery shopping at the beginning of the week and thus reduce the amount of going grocery shopping.</p>
                             <p>The random meal plan can help you to force a healthy lifestyle, because you can easily plan your meals for the week and avoid ordering too many pizzas a week. </p>
-                        </div>
+                            </div>
+                            </div>
                         <Link to="/randommealplan">
                             <button className="butStart">Go!</button>
                         </Link>
