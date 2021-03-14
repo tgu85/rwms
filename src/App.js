@@ -46,16 +46,16 @@ export default function BasicExample() {
                     <Route exact path="/recipes">
                         <Appli />
                     </Route>
-                    <Route path="/addingredients">
+                    <Route exact path="/addingredients">
                         <RecipeForm />
                     </Route>
-                    <Route path="/login">
+                    <Route exact path="/login">
                         <Login />
                     </Route>
-                    <Route path="/">
+                    <Route exact path="/">
                         <Startpage />
                     </Route>
-                    <Route path="/register">
+                    <Route exact path="/register">
                         <Register />
                     </Route>
                 </Switch>

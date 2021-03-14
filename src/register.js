@@ -21,8 +21,7 @@ class Register extends Component {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(user),
-                credentials: "include"
+                body: JSON.stringify(user)
             }
         )
         if (response.ok) {
