@@ -9,7 +9,7 @@
 
 .navi {
     color: #828282;
-    border-radius: 5px;
+    border-radius: 3px;
     padding: 5px;
     text-decoration: none;
 }
@@ -17,5 +17,5 @@
 .navi:hover {
     background: #FFBE17;
     color: white;
-    border-radius: 5px;
+    border-radius: 3px;
 }

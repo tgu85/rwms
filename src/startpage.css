@@ -8,11 +8,11 @@
     font-weight: bold;
     font-size: 30px;
     text-align: center;
+    margin-top: 10px !important;
 }
 
 .butStart {
-    display: flex;
-    align-items: center;
+    text-align: center;
 }
 
 .startBox {
@@ -28,9 +28,23 @@
     border-bottom-color: #FFBE17;
     border-right-color: #FFBE17;
     border-left-color: #FFBE17;
-    height: 320px;
+    border-radius: 3px;
+    height: 400px;
+    padding: 15px;
 }
 
 .linkStart {
     text-decoration: none;
+}
+
+#headerpic {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    overflow: hidden;
+
+}
+#headerpic img {
+    width: 100%;
+    margin-top: -70px;
 }
