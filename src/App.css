@@ -11,6 +11,7 @@
     color: #828282;
     border-radius: 5px;
     padding: 5px;
+    text-decoration: none;
 }
 
 .navi:hover {
