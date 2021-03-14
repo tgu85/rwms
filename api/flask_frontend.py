@@ -201,8 +201,8 @@ def show_ingredients():
 def recipe_overview():
     recipe_list_db = Recipes.query.filter_by(user_id=current_user.id).all()
     recipe_schema = RecipeSchema(many=True)
-    recipe_list_json = recipe_schema.dump(recipe_list_db)
-    return Response(recipe_list_json, mimetype="application/json")
+    recipe_list = recipe_schema.dump(recipe_list_db)
+    return Response(json.dumps(recipe_list), mimetype="application/json")
 
 
 
