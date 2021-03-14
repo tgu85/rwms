@@ -28,11 +28,9 @@ class Startpage extends Component {
                             <p>So you know exactly what to do when it comes to cooking and you do not have to learn new, maybe difficult recipes. </p>
                             <p>Let's start and create your own digital cookbook!</p>
                         </div>
-                        <button onClick={
-                            //<Link to="/addingredients"/>
-                            <a href="https://kraut-und-rueben.herokuapp.com/addingredients"></a>
-                        }>Go!
-                        </button>
+                        <Link to="/addingredients">
+                        <button>Go!</button>
+                        </Link>
                     </Col>
 
                     <Col className="startText">
@@ -44,9 +42,9 @@ class Startpage extends Component {
                                 Besides that, you can go grocery shopping at the beginning of the week and thus reduce the amount of going grocery shopping.</p>
                             <p>The random meal plan can help you to force a healthy lifestyle, because you can easily plan your meals for the week and avoid ordering too many pizzas a week. </p>
                         </div>
-                        <button className="butStart">Go!
-                            <Link to={location => ({ ...location, pathname: "/recipess" })} />
-                        </button>
+                        <Link to="/randommealplan">
+                            <button className="butStart">Go!</button>
+                        </Link>
                     </Col>
 
                     <Col className="startText">

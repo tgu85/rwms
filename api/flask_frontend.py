@@ -159,7 +159,7 @@ def add_ingredient():
     return "Success"
 
 
-@app.route("/recipes", methods=["GET"])
+@app.route("/randommealplan", methods=["GET"])
 @login_required
 def random_recipes():
     # username = "steffen"
@@ -195,6 +195,16 @@ def show_ingredients():
     ingredient_schema = IngredientSchema(many=True)
     ingredient_list_json = ingredient_schema.dump(ingredient_list_db)
     return Response(json.dumps(ingredient_list_json), mimetype="application/json")
+
+@app.route("/recipeoverview", methods=["GET"])
+@login_required
+def recipe_overview():
+    recipe_list_db = Recipes.query.filter_by(user_id=current_user.id).all()
+    recipe_schema = RecipeSchema(many=True)
+    recipe_list_json = recipe_schema.dump(recipe_list_db)
+    return Response(recipe_list_json, mimetype="application/json")
+
+
 
 
 if __name__ == "__main__":

@@ -26,7 +26,7 @@ export default function BasicExample() {
                             <Link className="navi" to="/">Start</Link>
                         </Col>
                         <Col>
-                            <Link className="navi" to="/recipes">Enjoy</Link>
+                            <Link className="navi" to="/randommealplan">Enjoy</Link>
                         </Col>
                         <Col>
                             <Link className="navi" to="/addingredients">Create</Link>
@@ -43,7 +43,7 @@ export default function BasicExample() {
                 <hr />
 
                 <Switch>
-                    <Route exact path="/recipes">
+                    <Route exact path="/randommealplan">
                         <Appli />
                     </Route>
                     <Route exact path="/addingredients">
