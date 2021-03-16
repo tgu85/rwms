@@ -40,8 +40,8 @@ class showIngredients extends Component {
                     </Row>
                     <Row className="justify-content-md-center gx-2">
                         {
-                            this.state.ingredients.name.map((entry, index) =>
-                                <Col md={3} className="recipeCard">
+                            this.state.ingredients.map((entry, ) =>
+                                <Col md={3}>
                                     <p className="title">{entry["ingredient"]}</p>
                                 </Col>)
                         }</Row>
