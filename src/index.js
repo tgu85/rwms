@@ -10,6 +10,7 @@ import './App.css';
 import './login.css';
 import './index.css';
 import './startpage.css';
+import './showIngredients';
 
 ReactDOM.render(
     <App />,

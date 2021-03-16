@@ -43,22 +43,6 @@ class showIngredients extends Component {
                             <p>{this.state.ingredients}</p>
                         </Col>),
                     }</Row>
-                    <Row>
-                        {
-                            this.state.ingredients.amount.map((entry, index) =>
-                            <Col>
-                                <p>{entry["amount"]}</p>
-                            </Col>)
-                        }
-                    </Row>
-                    <Row>
-                        {
-                            this.state.ingredients.unit.map((entry, index) =>
-                                <Col>
-                                    <p>{entry["unit"]}</p>
-                                </Col>)
-                        }
-                    </Row>
                 </Container>
             </div>
         );

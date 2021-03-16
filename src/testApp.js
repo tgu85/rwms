@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Col, Container, Row} from "react-bootstrap-v5";
+import {Link} from "react-router-dom";
 import pic from './salad.jpg';
 import './testApp.css';
 
@@ -36,7 +37,9 @@ class Appli extends Component {
                             <Col md={3} className="recipeCard">
                                 <p className="title">{entry["weekday"]}</p>
                                 <img src={pic} id="pic" />
-                                <p className="recipe">{entry["recipe"]}</p></Col>)
+                                <Link to="/showIngredients">
+                                <p className="recipe">{entry["recipe"]}</p></Link>
+                                </Col>)
                     }</Row>
                     <Row className="justify-content-md-center">
                         <Col md={3}>

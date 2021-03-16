@@ -15,6 +15,7 @@ import './index.css';
 import logo from './Monkey.png'
 import Startpage from "./startpage";
 import Register from "./register";
+import showIngredients from "./showIngredients";
 
 
 export default function BasicExample() {
@@ -26,6 +27,7 @@ export default function BasicExample() {
                     <Nav.Link className="navi" href="/">Start</Nav.Link>
                     <Nav.Link className="navi" href="/randommealplan">Enjoy</Nav.Link>
                     <Nav.Link className="navi" href="/addingredients">Create</Nav.Link>
+                    <Nav.Link className="navi" href="/showingredients">Ingredients</Nav.Link>
                     <Nav.Link className="navi" href="/login">Login</Nav.Link>
                     <Nav.Link className="navi" href="/register">Register</Nav.Link>
                 </Navbar>
@@ -47,6 +49,9 @@ export default function BasicExample() {
                     </Route>
                     <Route exact path="/register">
                         <Register />
+                    </Route>
+                    <Route exact path="/showingredients">
+                        <showIngredients />
                     </Route>
                 </Switch>
             </div>
