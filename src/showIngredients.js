@@ -8,13 +8,12 @@ class showIngredients extends Component {
         super()
         this.state = {
             recipe: '',
-            rating: '',
             ingredients: [
-                {'name': '', 'number': '', 'unit': ''},
-                {'name': '', 'number': '', 'unit': ''},
-                {'name': '', 'number': '', 'unit': ''},
-                {'name': '', 'number': '', 'unit': ''},
-                {'name': '', 'number': '', 'unit': ''}
+                {'name': '', 'amount': '', 'unit': ''},
+                {'name': '', 'amount': '', 'unit': ''},
+                {'name': '', 'amount': '', 'unit': ''},
+                {'name': '', 'amount': '', 'unit': ''},
+                {'name': '', 'amount': '', 'unit': ''}
             ],
         }
     }
@@ -27,7 +26,6 @@ class showIngredients extends Component {
         fetch(process.env.REACT_APP_APIURL + "/showingredients", {credentials:"include"})
             .then(response => response.json())
             .then(recipe => this.setState({recipe: recipe}))
-            .then(rating => this.setState({rating: rating}))
             .then (ingredients => this.setState({ingredients: ingredients}));
     }
 
