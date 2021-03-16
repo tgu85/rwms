@@ -130,6 +130,10 @@ def add_ingredient():
     # if user and bcrypt.check_password_hash(user.password, password):
     # login_user(user)
     get_ingredients = request.get_json()
+    recipe_name = get_ingredients["name"]
+    recipe = Recipes(recipe_name=recipe_name, owner=current_user)
+    db.session.add(recipe)
+    db.session.commit()
     for element in range(len(get_ingredients["ingredients"])):
         if get_ingredients["ingredients"][element]["name"] == 0 or get_ingredients["ingredients"][element][
             "name"] == "":
@@ -144,13 +148,9 @@ def add_ingredient():
             print("Fehler in Eingabe!")
             return "Failure"
         else:
-            recipe_name = get_ingredients["name"]
             ingredient = get_ingredients["ingredients"][element]["name"]
             amount = get_ingredients["ingredients"][element]["number"]
             unit = get_ingredients["ingredients"][element]["unit"]
-            recipe = Recipes(recipe_name=recipe_name, owner=current_user)
-            db.session.add(recipe)
-            db.session.commit()
             current_recipe = Recipes.query.filter_by(recipe_name=recipe_name).first()
             ingredients = Ingredients(ingredient=ingredient, amount=amount, unit=unit, recipe_name=current_recipe,
                                       owner=current_user)
@@ -187,7 +187,7 @@ def random_recipes():
     return Response(json.dumps(response), mimetype="application/json")
 
 
-@app.route("/show_ingredients", methods=["POST"])
+@app.route("/showingredients", methods=["POST"])
 @login_required
 def show_ingredients():
     recipe_name = request.form.get("recipe")
