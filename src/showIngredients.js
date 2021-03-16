@@ -39,12 +39,10 @@ class showIngredients extends Component {
                         <Col id="heading"><h1>{this.state.recipe}</h1></Col>
                     </Row>
                     <Row className="justify-content-md-center gx-2">
-                        {
-                            this.state.ingredients.map((entry, ) =>
-                                <Col md={3}>
-                                    <p className="title">{entry["ingredient"]}</p>
-                                </Col>)
-                        }</Row>
+                        <Col md={3}>
+                            <p>{this.state.ingredients}</p>
+                        </Col>),
+                    }</Row>
                     <Row>
                         {
                             this.state.ingredients.amount.map((entry, index) =>
