@@ -27,7 +27,6 @@ export default function BasicExample() {
                     <Nav.Link className="navi" href="/">Start</Nav.Link>
                     <Nav.Link className="navi" href="/randommealplan">Enjoy</Nav.Link>
                     <Nav.Link className="navi" href="/addingredients">Create</Nav.Link>
-                    <Nav.Link className="navi" href="/showingredients">Ingredients</Nav.Link>
                     <Nav.Link className="navi" href="/login">Login</Nav.Link>
                     <Nav.Link className="navi" href="/register">Register</Nav.Link>
                 </Navbar>
