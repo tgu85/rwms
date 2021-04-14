@@ -23,8 +23,8 @@ class User(db.Model, UserMixin):
     recipes = db.relationship("Recipes", backref="owner", lazy=True)
     ingredients = db.relationship("Ingredients", backref="owner", lazy=True)
 
-    def __repr__(self):
-        return f"{self.username}"
+    #def __repr__(self):
+     #   return f"{self.username}"
 
 
 class Recipes(db.Model):
@@ -33,8 +33,8 @@ class Recipes(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     ingredients = db.relationship("Ingredients", backref="recipe_name", lazy=True)
 
-    def __repr__(self):
-        return f"{self.recipe_name}"
+    #def __repr__(self):
+    #    return f"{self.recipe_name}"
 
 
 class Ingredients(db.Model):
@@ -45,8 +45,8 @@ class Ingredients(db.Model):
     recipes_id = db.Column(db.Integer, db.ForeignKey("recipes.id"), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
-    def __repr__(self):
-        return f"{self.ingredient}, {self.amount},{self.unit}"
+    #def __repr__(self):
+    #    return f"{self.ingredient}, {self.amount},{self.unit}"
 
 
 class RecipeSchema(ma.SQLAlchemyAutoSchema):
@@ -191,12 +191,8 @@ def show_ingredients():
             return redirect(url_for("index"))
         else:
             recipe_name = request.form.get("recipe")
-            recipe_name_id = Recipes.id.query.filter_by(recipe_name=recipe_name, user_id=current_user.id).first()
-            #recipe_name_id = db.session.query(Recipes.id).filter(recipe_name=recipe_name, user_id=current_user.id).scalar()
-            print(recipe_name_id)
-            recipe_name_id = 2
-            ingredient_list_db = Ingredients.query.filter_by(recipes_id=recipe_name_id, user_id=current_user.id).all()
-            print(ingredient_list_db)
+            recipe_name_id = Recipes.query.filter_by(recipe_name=recipe_name, user_id=current_user.id).first()
+            ingredient_list_db = Ingredients.query.filter_by(recipes_id=recipe_name_id.id, user_id=current_user.id).all()
             ingredient_schema = IngredientSchema(many=True)
             ingredient_list_json = ingredient_schema.dump(ingredient_list_db)
             return Response(json.dumps(ingredient_list_json), mimetype="application/json")
@@ -205,4 +201,4 @@ def show_ingredients():
 
 
 if __name__ == "__main__":
-    app.run(host="localhost", port="3000")
+    app.run(host="localhost", port="5000")
