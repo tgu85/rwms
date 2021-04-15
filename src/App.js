@@ -15,7 +15,7 @@ import './index.css';
 import logo from './Monkey.png'
 import Startpage from "./startpage";
 import Register from "./register";
-import showIngredients from "./showIngredients";
+import ShowIngredients from "./showIngredients";
 
 
 export default function BasicExample() {
@@ -50,7 +50,7 @@ export default function BasicExample() {
                         <Register />
                     </Route>
                     <Route exact path="/showingredients">
-                        <showIngredients />
+                        <ShowIngredients />
                     </Route>
                 </Switch>
             </div>

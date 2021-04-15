@@ -122,7 +122,7 @@ def logout():
 
 
 @app.route("/addingredients", methods=["POST"])
-@login_required
+#@login_required
 def add_ingredient():
     # username = "steffen"
     # password = "test"
@@ -160,7 +160,7 @@ def add_ingredient():
 
 
 @app.route("/randommealplan", methods=["GET"])
-@login_required
+#@login_required
 def random_recipes():
     # username = "steffen"
     # password = "test"
@@ -184,11 +184,12 @@ def random_recipes():
             random_list.append(n)
     for i, weekday in enumerate(weekdays):
         response.append({"weekday": weekday, "recipe": recipe_list[random_list[i]]})
+    print(response)
     return Response(json.dumps(response), mimetype="application/json")
 
 
-@app.route("/showingredients", methods=["POST"])
-@login_required
+@app.route("/showingredients", methods=["GET"])
+#@login_required
 def show_ingredients():
     recipe_name = request.form.get("recipe")
     ingredient_list_db = Ingredients.query.filter_by(recipes_id=recipe_name, user_id=current_user.id).all()
@@ -197,7 +198,7 @@ def show_ingredients():
     return Response(json.dumps(ingredient_list_json), mimetype="application/json")
 
 @app.route("/recipeoverview", methods=["GET"])
-@login_required
+#@login_required
 def recipe_overview():
     recipe_list_db = Recipes.query.filter_by(user_id=current_user.id).all()
     recipe_schema = RecipeSchema(many=True)

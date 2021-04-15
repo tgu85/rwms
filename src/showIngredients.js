@@ -3,7 +3,7 @@ import {Col, Container, Row} from "react-bootstrap-v5";
 import './testApp.css';
 
 //this App displays the weekly meal plan
-class showIngredients extends Component {
+class ShowIngredients extends Component {
     constructor() {
         super()
         this.state = {
@@ -23,7 +23,11 @@ class showIngredients extends Component {
     }
 
     show() {
-        fetch(process.env.REACT_APP_APIURL + "/showingredients", {credentials:"include"})
+
+        //get parameter bekommen und in eine Variable packen
+        // dann Variable an den Pfad anhängen (name=var)
+        console.log("done");
+        fetch(process.env.REACT_APP_APIURL + "/showingredients?name=recipe", {credentials:"include"})
             .then(response => response.json())
             .then(recipe => this.setState({recipe: recipe}))
             .then (ingredients => this.setState({ingredients: ingredients}));
@@ -52,4 +56,4 @@ class showIngredients extends Component {
     }
 };
 
-export default showIngredients;
+export default ShowIngredients;

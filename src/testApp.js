@@ -37,7 +37,10 @@ class Appli extends Component {
                             <Col md={3} className="recipeCard">
                                 <p className="title">{entry["weekday"]}</p>
                                 <img src={pic} id="pic" />
-                                <Link to="/showIngredients">
+                                <Link to={{
+                                    pathname: "/ShowIngredients",
+                                    search: "?name=" + entry["recipe"],
+                                }}>
                                 <p className="recipe">{entry["recipe"]}</p></Link>
                                 </Col>)
                     }</Row>
