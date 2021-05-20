@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Col, Container, Row} from "react-bootstrap-v5";
 import {Link} from "react-router-dom";
-import pic from './salad.jpg';
-import './testApp.css';
+import pic from '../images/salad.jpg';
+import '../css/testApp.css';
 
 //this App displays the weekly meal plan
 class Appli extends Component {

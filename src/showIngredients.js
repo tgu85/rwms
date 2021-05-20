@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Col, Container, Row} from "react-bootstrap-v5";
-import './testApp.css';
+import '../css/testApp.css';
 
 //this App displays the weekly meal plan
 class ShowIngredients extends Component {

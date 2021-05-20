@@ -10,9 +10,9 @@ import RecipeForm from "./recipeForm";
 import Login from "./login";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Col, Container, Navbar, Row, Nav} from "react-bootstrap-v5";
-import './App.css';
-import './index.css';
-import logo from './Monkey.png'
+import '../css/App.css';
+import '../css/index.css';
+import logo from '../images/Monkey.png'
 import Startpage from "./startpage";
 import Register from "./register";
 import ShowIngredients from "./showIngredients";
@@ -57,6 +57,3 @@ export default function BasicExample() {
         </Router>
     );
 };
-
-// You can think of these components as "pages"
-// in your app.
