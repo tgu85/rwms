@@ -2,7 +2,7 @@ import { Component } from 'react';
 //import {Button, Form, FormControl} from 'react-bootstrap-v5';
 import { Form, Input, button } from "semantic-ui-react";
 import {Container, Row} from "react-bootstrap-v5";
-import './login.css';
+import '../css/login.css';
 
 class Register extends Component {
     constructor() {

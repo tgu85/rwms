@@ -3,7 +3,7 @@ import {Component} from 'react';
 import {Form, Input, button} from "semantic-ui-react";
 import {Container, Row} from "react-bootstrap-v5";
 //import FlashMessage from 'react-flash-message';
-import './login.css';
+import '../css/login.css';
 
 class Login extends Component {
     constructor() {

@@ -1,7 +1,7 @@
 import {Component} from 'react';
 //import {Button, Form, FormControl, FormGroup} from 'react-bootstrap-v5';
 import {Form, Input, Rating, button} from 'semantic-ui-react';
-import './recipeForm.css';
+import '../css/recipeForm.css';
 import {Col, Container, Row} from "react-bootstrap-v5";
 
 class RecipeForm extends Component {

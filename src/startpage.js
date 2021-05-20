@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { button } from "semantic-ui-react";
 import {Col, Container, Row} from "react-bootstrap-v5";
 import {Link} from "react-router-dom";
-import headerpic from './header2.png';
-import './startpage.css';
-import './index.css';
+import headerpic from '../images/header2.png';
+import '../css/startpage.css';
+import '../css/index.css';
 
 class Startpage extends Component {
     render () {
